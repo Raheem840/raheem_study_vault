@@ -38,8 +38,13 @@ Create the empty repo on GitHub first (no README/license, so it doesn't conflict
 `Codex/mini_codex.html` was previously reading/writing state via `window.storage`, which only exists inside a Claude artifact sandbox — that's why your CGPA wasn't surviving reloads once deployed on Vercel. It now uses `localStorage` directly, so it persists in any normal browser. Replace the corresponding file in your `raheem-codex` repo with this one (or diff it in) and redeploy.
 
 ## Status
-- [x] AI (CSC2114) — Chapter 1: Introduction
-- [ ] AI (CSC2114) — remaining chapters (ML, Search, MDPs, Games, CSPs, Bayesian Nets)
+- [x] AI (CSC2114) — Ch.1 Introduction
+- [x] AI (CSC2114) — Ch.19 Machine Learning
+- [x] AI (CSC2114) — Ch.3 Search
+- [x] AI (CSC2114) — Ch.17 MDPs
+- [x] AI (CSC2114) — Ch.5 Adversarial Search / Games
+- [x] AI (CSC2114) — Ch.6 CSPs
+- [x] AI (CSC2114) — Ch.12-13 Bayesian Networks — **AI course now fully covered per the syllabus map**
 - [ ] Discrete Mathematics (CSC 2105)
 - [ ] Computer Networks (BSE 2106)
 - [ ] Database Management Systems (CSC 2107)

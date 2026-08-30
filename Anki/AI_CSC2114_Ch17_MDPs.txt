@@ -1,0 +1,14 @@
+#separator:tab
+#html:true
+#deck:AI::CSC2114::Ch17 MDPs
+List the 5 formal components of an MDP.	States S, Actions A(s), Transition model P(s'|s,a), Reward function R(s), Discount factor gamma
+What does the Markov property mean in this context?	The effect of an action in a state depends only on the current state, not on the history of how the agent got there
+What does the discount factor gamma control?	How much future rewards are worth relative to immediate rewards; near 0 is short-sighted, near 1 is far-sighted
+Why is discounting (gamma < 1) needed for infinite-horizon problems?	It guarantees the infinite sum of rewards converges to a finite utility value
+Define a policy in an MDP.	A mapping from every state to an action — a complete contingency plan for what to do in any state
+Write the Bellman equation.	U(s) = R(s) + gamma * max_a [ Sum_s' P(s'|s,a) * U(s') ]
+What does the optimal policy formula extract from the utility function?	pi*(s) = argmax_a [ Sum_s' P(s'|s,a) * U(s') ] — the action leading to the highest expected successor utility
+Describe Value Iteration's core update step.	For every state, U'(s) = R(s) + gamma * max_a Sum_s' P(s'|s,a) U(s), using the previous iteration's U values, repeated until convergence
+What is Policy Iteration's "policy evaluation" step?	Solving for U^pi(s), the utility of following the fixed current policy pi forever — a linear system since the action is fixed (no max operator)
+What is Policy Iteration's "policy improvement" step?	Checking, for each state, whether switching to a different action would increase utility; if so, updating the policy
+Contrast Value Iteration and Policy Iteration computationally.	Value iteration does many cheap Bellman updates; policy iteration does fewer but more expensive steps (solving a linear system each iteration); both converge to the same optimal policy

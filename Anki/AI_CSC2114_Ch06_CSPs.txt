@@ -1,0 +1,15 @@
+#separator:tab
+#html:true
+#deck:AI::CSC2114::Ch06 CSPs
+List the 3 formal components of a CSP.	Variables, Domains, Constraints
+What is "early failure detection" in backtracking search?	Checking constraints as soon as a variable is assigned, rather than only after a full assignment is generated, so invalid branches are abandoned immediately
+What does the Minimum Remaining Values (MRV) heuristic choose?	The unassigned variable with the fewest legal values left in its domain (fail fast)
+What does the Degree heuristic choose, and when is it used?	The variable involved in the most constraints with other unassigned variables; used to break MRV ties
+What does the Least Constraining Value (LCV) heuristic choose?	The value for the chosen variable that rules out the fewest choices for neighbouring variables (keeps options open)
+Do MRV/degree and LCV choose a variable or a value?	MRV and degree heuristic choose which VARIABLE to assign next; LCV chooses which VALUE to try for it
+Define arc consistency for an arc X->Y.	For every value in X's domain, there must be some value in Y's domain that satisfies the constraint between them; otherwise remove the offending value from X
+Describe the AC-3 algorithm's core loop.	Maintain a queue of arcs; pop an arc and enforce arc consistency; if a domain changes, re-add all arcs pointing into that variable to the queue; repeat until the queue is empty or a domain becomes empty
+What is AC-3's worst-case time complexity?	O(n^2 * d^3) for n variables and max domain size d
+What is the min-conflicts heuristic?	Starting from a complete assignment, repeatedly pick a conflicted variable and reassign it to the value minimizing constraint violations — a local search / hill-climbing approach
+Why can a tree-structured CSP be solved in linear time?	Because it has no cycles in its constraint graph, allowing a two-pass algorithm (directional arc consistency then direct assignment) with no backtracking needed, O(n*d^2)
+What is cutset conditioning?	Fixing values for a small set of variables (the cycle cutset) to break all cycles in a near-tree constraint graph, turning the rest into a fast tree-structured problem

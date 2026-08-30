@@ -1,0 +1,16 @@
+#separator:tab
+#html:true
+#deck:AI::CSC2114::Ch12-13 Bayesian Networks
+State Bayes' rule.	P(A|B) = P(B|A) * P(A) / P(B)
+In Bayes' rule, what do "prior", "likelihood", "evidence" and "posterior" refer to?	Prior = P(A); Likelihood = P(B|A); Evidence = P(B) (normalizer); Posterior = P(A|B)
+State the product rule of probability.	P(A and B) = P(A|B)P(B) = P(B|A)P(A)
+State the definition of conditional independence between A and B given C.	P(A|B,C) = P(A|C)
+Why can a 99%-sensitive medical test still give a low P(disease|positive) when the disease is rare?	Because the low base rate (prior) means most positive results come from the much larger healthy population's false positives, pulling the posterior down — must compute via full Bayes' rule, not intuition
+What independence assumption does Naive Bayes make?	All evidence variables are conditionally independent of each other, given the class
+Write the Naive Bayes classification formula.	P(Class | e1,...,en) = alpha * P(Class) * Product_i P(ei | Class)
+What is a Bayesian network structurally?	A directed acyclic graph where each node is a random variable, each edge represents direct influence, and each node has a Conditional Probability Table (CPT) given its parents
+State the chain rule factorization of a joint distribution using a Bayesian network.	P(X1,...,Xn) = Product_i P(Xi | Parents(Xi))
+What conditional independence property does a Bayesian network encode for each node?	Each node is conditionally independent of its non-descendants, given its parents
+What is d-separation used for?	The graphical test for whether two variables are conditionally independent given a set of evidence variables, by checking whether all paths between them are blocked
+Contrast inference by enumeration and variable elimination.	Both compute exact answers by summing out hidden variables; enumeration recomputes over the full joint (exponential, wasteful), while variable elimination eliminates variables one at a time and caches intermediate factors, much more efficient especially on sparse networks
+Name three approximate inference sampling methods for Bayesian networks.	Direct/prior sampling, rejection sampling, likelihood weighting

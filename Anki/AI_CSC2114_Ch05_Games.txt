@@ -1,0 +1,16 @@
+#separator:tab
+#html:true
+#deck:AI::CSC2114::Ch05 Games
+In minimax, what does MAX want and what does MIN want?	MAX tries to maximize the utility; MIN tries to minimize it (zero-sum game)
+State the minimax value rule for a MAX node and a MIN node.	MAX node value = max of children's values; MIN node value = min of children's values
+Give minimax's time and space complexity.	O(b^m) time, O(bm) space (b=branching factor, m=max depth)
+What is alpha in alpha-beta pruning?	The best value MAX can guarantee so far along the current path (starts at -infinity)
+What is beta in alpha-beta pruning?	The best value MIN can guarantee so far along the current path (starts at +infinity)
+State the beta-cutoff rule.	At a MAX node, if a child's value >= beta, stop exploring further children — MIN would never let play reach here
+State the alpha-cutoff rule.	At a MIN node, if a child's value <= alpha, stop exploring further children — MAX would never let play reach here
+Does alpha-beta pruning ever change the final move chosen compared to plain minimax?	No — it produces the exact same result, only skipping provably irrelevant branches
+Why does move ordering matter for alpha-beta efficiency?	Exploring the best moves first produces more cutoffs, approaching the best-case branching factor of sqrt(b); poor ordering gives no benefit over plain minimax
+What is an evaluation function used for in game-playing programs?	Estimating how good a non-terminal state is when full minimax to terminal states is computationally infeasible (depth-limited/heuristic minimax)
+What is the horizon effect?	A danger just beyond the search depth cutoff gets missed or underestimated because the cutoff happens right before it becomes visible
+What is quiescence search?	Extending search further at "unstable" positions (e.g. right after a capture) so evaluation isn't made at a misleading moment
+What is Expectimax and when is it used?	Minimax extended with chance nodes whose value is the probability-weighted expected value over random outcomes; used for stochastic games involving chance (e.g. dice)

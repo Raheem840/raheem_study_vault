@@ -1,0 +1,19 @@
+#separator:tab
+#html:true
+#deck:AI::CSC2114::Ch03 Search
+List the 5 components of a formal search problem.	Initial state, Actions(s), Transition model/Result(s,a), Goal test, Path cost function
+Define completeness (of a search algorithm).	Guaranteed to find a solution if one exists
+Define optimality (of a search algorithm).	Guaranteed to find the lowest path-cost solution
+Give BFS's time and space complexity in terms of b and d.	O(b^d) time and O(b^d) space
+Give DFS's time and space complexity in terms of b and m.	O(b^m) time and O(bm) space — linear space is its main advantage
+Is DFS complete or optimal in general?	No to both — it can loop forever in infinite/cyclic spaces and doesn't guarantee the cheapest solution
+What is Iterative Deepening DFS (IDDFS) and why is its time complexity still O(b^d)?	It repeats depth-limited search with limit=0,1,2,... ; the time complexity is still O(b^d) because the bottom (deepest) level dominates the total node count despite the repeated shallow levels
+What does Uniform-Cost Search expand at each step?	The node with the lowest accumulated path cost g(n) so far, using a priority queue
+Define an admissible heuristic.	One that never overestimates the true cost to the goal: h(n) ≤ h*(n)
+Define a consistent heuristic.	For every edge n→n', h(n) ≤ cost(n,n') + h(n') (triangle inequality)
+Why does consistency matter more than admissibility alone for A*?	Consistency guarantees A* is optimal even with graph search (visited-set pruning); admissibility alone only guarantees optimality for tree search
+What is the A* evaluation function?	f(n) = g(n) + h(n), where g is cost so far and h is estimated cost to goal
+Give two classic admissible heuristics for the 8-puzzle.	h1 = number of misplaced tiles; h2 = sum of Manhattan distances of tiles from their goal positions
+What does it mean for heuristic h2 to "dominate" h1?	h2(n) ≥ h1(n) for all n, while both remain admissible — meaning A* with h2 expands fewer or equal nodes compared to using h1
+How can an admissible heuristic be generated systematically?	By solving a relaxed version of the problem (fewer constraints); the relaxed problem's optimal cost is always ≤ the true cost, so it's automatically admissible
+What is Greedy Best-First Search's ordering criterion, and why is it not optimal?	Expands the node with smallest h(n) only (ignores cost so far); not optimal because it can follow a misleading heuristic estimate down an expensive path

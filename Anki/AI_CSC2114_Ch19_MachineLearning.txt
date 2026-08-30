@@ -1,0 +1,17 @@
+#separator:tab
+#html:true
+#deck:AI::CSC2114::Ch19 Machine Learning
+Define supervised learning.	Learning a function f: X→Y from labeled input-output example pairs
+What's the difference between classification and regression?	Classification predicts a discrete/categorical output; regression predicts a continuous numeric output
+What is overfitting?	When a model fits the training data (including noise) so closely that it performs worse on new, unseen data
+What is underfitting?	When a model is too simple to capture the real pattern, performing poorly on both training and test data
+State the formula for entropy of a set S with class proportions pi.	H(S) = − Σ pi log2(pi)
+State the formula for Information Gain of splitting S on attribute A.	IG(S,A) = H(S) − Σ_v (|Sv|/|S|) · H(Sv), where Sv is the subset with A=v
+In ID3 decision tree building, which attribute is chosen to split on at each node?	The attribute with the highest Information Gain
+Name two ways to prevent a decision tree from overfitting.	Pruning (remove branches that don't help validation performance) and early stopping (stop splitting when IG is negligible or too few examples remain)
+What does the No Free Lunch theorem say?	Averaged over all possible problems, no single learning algorithm outperforms all others — algorithm choice must fit the specific problem (inductive bias)
+Why is k-NN called a "lazy" learning method?	It has no explicit training phase — all computation (finding nearest neighbours) happens at prediction time
+How does bagging reduce error, and what does Random Forest add to it?	Bagging trains models independently on bootstrapped (resampled with replacement) data subsets and averages/votes to reduce variance; Random Forest additionally randomizes the feature subset considered at each split
+How does boosting differ from bagging?	Boosting trains models sequentially, each new model focusing on examples the previous ones got wrong (reweighting), reducing bias rather than variance
+What is regularization used for?	Adding a penalty for model complexity (e.g. L1/L2 on weights) to discourage overfitting
+What is k-fold cross-validation?	Splitting data into k parts, training on k-1 and testing on the remaining one, rotating and averaging results for a more reliable generalization estimate than a single train/test split
