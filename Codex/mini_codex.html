@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAHEEM CODEX // FULL SYSTEM</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#05070d; --bg2:#080b14; --panel:#0b0f1c; --panel2:#0e1424;
+    --line: rgba(0,229,255,.16); --line-strong: rgba(0,229,255,.4);
+    --cyan:#00e5ff; --cyan-dim:#0891a8; --gold:#ffcc33; --danger:#ff4d6d; --ok:#3ddc97;
+    --text:#e8f4ff; --muted:#7386a3; --muted2:#4d5c74;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;}
+  body{background:
+      radial-gradient(ellipse 90% 60% at 15% -10%, rgba(0,229,255,.07), transparent 60%),
+      radial-gradient(ellipse 70% 50% at 100% 0%, rgba(255,204,51,.05), transparent 60%),
+      var(--bg); min-height:100vh;}
+  ::selection{background:rgba(0,229,255,.3);}
+  h1,h2,h3,h4,.mono{font-family:'Chakra Petch',sans-serif;}
+  .data{font-family:'JetBrains Mono',monospace;}
+  a{color:var(--cyan);}
+  .shell{max-width:1200px;margin:0 auto;padding:18px 16px 80px;}
+
+  .topbar{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:16px;gap:12px;flex-wrap:wrap;}
+  .brand{display:flex;align-items:center;gap:12px;}
+  .brand .glyph{width:38px;height:38px;border:1px solid var(--line-strong);display:flex;align-items:center;justify-content:center;
+    clip-path:polygon(15% 0,100% 0,100% 85%,85% 100%,0 100%,0 15%);color:var(--cyan);font-family:'Chakra Petch';font-weight:700;background:rgba(0,229,255,.06);}
+  .brand h1{font-size:19px;letter-spacing:.06em;margin:0;color:var(--text);text-transform:uppercase;}
+  .brand .sub{font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:2px;}
+  .status-chip{font-family:'JetBrains Mono';font-size:11px;color:var(--ok);border:1px solid rgba(61,220,151,.35);background:rgba(61,220,151,.06);padding:5px 10px;clip-path:polygon(8px 0,100% 0,100% 100%,0 100%,0 8px);}
+
+  .nav{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px;}
+  .nav button{font-family:'Chakra Petch';font-size:12px;letter-spacing:.03em;text-transform:uppercase;background:var(--panel);color:var(--muted);border:1px solid var(--line);padding:8px 12px;cursor:pointer;transition:.15s;clip-path:polygon(10px 0,100% 0,100% 100%,0 100%,0 10px);}
+  .nav button:hover{color:var(--text);border-color:var(--line-strong);}
+  .nav button.active{color:#001217;background:var(--cyan);border-color:var(--cyan);font-weight:600;}
+
+  .view{display:none;animation:fade .22s ease;}
+  .view.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+
+  .panel{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:2px;padding:18px 20px;margin-bottom:16px;position:relative;}
+  .panel::before{content:"";position:absolute;top:0;left:0;width:22px;height:22px;border-top:1px solid var(--line-strong);border-left:1px solid var(--line-strong);}
+  .panel::after{content:"";position:absolute;bottom:0;right:0;width:22px;height:22px;border-bottom:1px solid var(--line-strong);border-right:1px solid var(--line-strong);}
+  .panel h2{font-size:15px;letter-spacing:.05em;text-transform:uppercase;color:var(--cyan);margin:0 0 4px;}
+  .panel h3{font-size:13.5px;letter-spacing:.03em;text-transform:uppercase;color:var(--text);margin:18px 0 8px;}
+  .eyebrow{font-family:'JetBrains Mono';font-size:10.5px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;}
+  p{line-height:1.55;color:#c4d5ea;font-size:14px;margin:6px 0;}
+  .muted{color:var(--muted);}
+  .badge{display:inline-block;font-family:'JetBrains Mono';font-size:10px;letter-spacing:.06em;border:1px solid var(--line-strong);color:var(--cyan);padding:2px 8px;margin-left:8px;vertical-align:middle;text-transform:uppercase;}
+  .badge.rec{color:var(--gold);border-color:rgba(255,204,51,.5);}
+  .badge.current{color:var(--ok);border-color:rgba(61,220,151,.5);}
+  .badge.slack{color:var(--danger);border-color:rgba(255,77,109,.5);}
+
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .grid2{display:grid;grid-template-columns:2fr 1fr;gap:14px;}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;}
+  @media(max-width:980px){.grid5{grid-template-columns:repeat(3,1fr);}}
+  @media(max-width:820px){.grid3,.grid4{grid-template-columns:1fr 1fr;}.grid2{grid-template-columns:1fr;}.grid5{grid-template-columns:1fr 1fr;}}
+  @media(max-width:560px){.grid3,.grid4,.grid5{grid-template-columns:1fr;}}
+  .stat{padding:14px 16px;}
+  .stat .num{font-family:'JetBrains Mono';font-size:22px;color:var(--gold);font-weight:700;}
+  .stat .lbl{font-size:9.5px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-top:4px;}
+  .barwrap{height:8px;background:#0a0f1c;border:1px solid var(--line);margin-top:6px;}
+  .bar{height:100%;background:linear-gradient(90deg,var(--cyan-dim),var(--cyan));}
+
+  .course-list{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  @media(max-width:820px){.course-list{grid-template-columns:1fr;}}
+  .course-card{background:var(--panel);border:1px solid var(--line);padding:16px;cursor:pointer;transition:.15s;clip-path:polygon(14px 0,100% 0,100% 100%,0 100%,0 14px);}
+  .course-card:hover{border-color:var(--line-strong);transform:translateY(-2px);}
+  .course-card .code{font-family:'JetBrains Mono';font-size:11px;color:var(--gold);}
+  .course-card h3{margin:4px 0 6px;font-size:15px;color:var(--text);text-transform:none;}
+  .course-card .meta{display:flex;gap:10px;font-size:11px;color:var(--muted);font-family:'JetBrains Mono';margin-top:8px;}
+  .pill{border:1px solid var(--line);padding:2px 7px;border-radius:20px;}
+
+  .cu-badge{display:inline-block;font-family:'JetBrains Mono';font-size:11px;color:var(--cyan);border:1px solid var(--line-strong);padding:3px 9px;margin-left:10px;vertical-align:middle;}
+  .why{border-left:2px solid var(--gold);padding-left:12px;margin:12px 0;background:rgba(255,204,51,.04);padding:10px 12px;}
+  .module{border-top:1px solid var(--line);padding:12px 0;}
+  .module:first-of-type{border-top:none;}
+  .module-head{display:flex;justify-content:space-between;align-items:baseline;cursor:pointer;}
+  .module-head h4{margin:0;font-size:13.5px;color:var(--text);font-weight:600;}
+  .module-hours{font-family:'JetBrains Mono';font-size:11px;color:var(--muted);}
+  .checklist{margin-top:8px;display:none;}
+  .checklist.open{display:block;}
+  .check-item{display:flex;align-items:flex-start;gap:8px;padding:4px 0;font-size:13px;color:#c4d5ea;}
+  .check-item input{margin-top:3px;accent-color:var(--cyan);}
+  .check-item.done label{color:var(--muted2);text-decoration:line-through;}
+  .tip-box{background:rgba(0,229,255,.05);border:1px solid var(--line);padding:12px 14px;margin-top:14px;}
+  .tip-box .k{color:var(--cyan);font-family:'Chakra Petch';font-size:12px;letter-spacing:.05em;text-transform:uppercase;}
+  .assess-row{display:flex;gap:14px;font-family:'JetBrains Mono';font-size:12px;margin-top:8px;}
+  .assess-row div{border:1px solid var(--line);padding:8px 12px;flex:1;text-align:center;}
+  .assess-row .cw{color:var(--gold);}
+  .assess-row .ex{color:var(--danger);}
+  .backbtn{font-family:'Chakra Petch';font-size:12px;color:var(--muted);background:none;border:1px solid var(--line);padding:6px 12px;cursor:pointer;margin-bottom:14px;text-transform:uppercase;letter-spacing:.04em;}
+  .backbtn:hover{color:var(--cyan);border-color:var(--line-strong);}
+
+  .elective-card{border:1px dashed var(--line-strong);padding:12px 14px;background:rgba(255,204,51,.02);margin-bottom:10px;}
+  .elective-card .t{font-family:'Chakra Petch';font-size:13px;color:var(--text);font-weight:600;}
+  .elective-card .code{font-family:'JetBrains Mono';font-size:10.5px;color:var(--muted);}
+
+  .tech-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  @media(max-width:820px){.tech-grid{grid-template-columns:1fr;}}
+  .tech-card{border:1px solid var(--line);padding:14px 16px;background:var(--panel);}
+  .tech-card h4{margin:0 0 6px;color:var(--gold);font-family:'Chakra Petch';font-size:14px;text-transform:uppercase;letter-spacing:.03em;}
+  .tech-card .ex{font-size:12.5px;color:var(--cyan-dim);margin-top:8px;border-top:1px dashed var(--line);padding-top:8px;}
+  .tech-card .ex b{color:var(--cyan);}
+
+  .cgpa-table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:6px;}
+  .cgpa-table th{font-family:'JetBrains Mono';font-size:10px;color:var(--muted);text-transform:uppercase;text-align:left;padding:7px 6px;border-bottom:1px solid var(--line-strong);}
+  .cgpa-table td{padding:6px 6px;border-bottom:1px solid var(--line);}
+  .cgpa-table select, .cgpa-table input{background:var(--bg2);color:var(--text);border:1px solid var(--line);font-family:'JetBrains Mono';padding:4px 6px;font-size:12px;width:100%;}
+  .cgpa-table tr.semhead td{background:rgba(0,229,255,.05);font-family:'Chakra Petch';font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--cyan);border-bottom:1px solid var(--line-strong);padding:8px 6px;}
+  .cgpa-table tr.elective-row td{color:var(--gold);font-style:italic;}
+  .cgpa-result{display:flex;gap:14px;margin-top:16px;flex-wrap:wrap;}
+  .cgpa-result .box{flex:1;min-width:150px;border:1px solid var(--line-strong);padding:14px;text-align:center;background:rgba(0,229,255,.04);}
+  .cgpa-result .box .v{font-family:'JetBrains Mono';font-size:22px;color:var(--gold);font-weight:700;}
+  .cgpa-result .box .l{font-size:10px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-top:4px;}
+  .classify{text-align:center;margin-top:14px;padding:14px;border:1px solid var(--line-strong);font-family:'Chakra Petch';font-size:16px;letter-spacing:.04em;text-transform:uppercase;}
+  .resetbtn{font-family:'Chakra Petch';font-size:11.5px;color:var(--cyan);background:rgba(0,229,255,.06);border:1px solid var(--line-strong);padding:7px 12px;cursor:pointer;text-transform:uppercase;letter-spacing:.04em;margin-top:10px;}
+  .resetbtn:hover{background:rgba(0,229,255,.14);}
+
+  .week-grid{display:grid;grid-template-columns:90px repeat(7,1fr);gap:1px;background:var(--line);border:1px solid var(--line);font-size:11px;}
+  .week-grid > div{background:var(--panel);padding:6px 5px;}
+  .week-grid .hd{background:var(--panel2);color:var(--muted);font-family:'JetBrains Mono';text-transform:uppercase;font-size:10px;text-align:center;padding:8px 4px;}
+  .week-grid .time{color:var(--muted);font-family:'JetBrains Mono';font-size:10px;}
+
+  .day-table{width:100%;border-collapse:collapse;font-size:12.5px;}
+  .day-table td,.day-table th{padding:8px 8px;border-bottom:1px solid var(--line);}
+  .day-table th{font-family:'JetBrains Mono';font-size:10px;color:var(--muted);text-transform:uppercase;text-align:left;}
+  .day-table td.time{font-family:'JetBrains Mono';color:var(--cyan);white-space:nowrap;}
+  .tag{display:inline-block;font-family:'JetBrains Mono';font-size:9.5px;padding:2px 7px;border-radius:3px;text-transform:uppercase;letter-spacing:.04em;}
+  .tag.study{background:rgba(0,229,255,.12);color:var(--cyan);}
+  .tag.dsa{background:rgba(255,204,51,.12);color:var(--gold);}
+  .tag.venture{background:rgba(61,220,151,.12);color:var(--ok);}
+  .tag.rest{background:rgba(115,134,163,.15);color:var(--muted);}
+  .tag.log{background:rgba(255,77,109,.12);color:var(--danger);}
+
+  textarea.notes{width:100%;min-height:80px;background:var(--bg2);color:var(--text);border:1px solid var(--line);font-family:'JetBrains Mono';font-size:12.5px;padding:10px;resize:vertical;}
+  .savehint{font-size:10px;color:var(--muted2);margin-top:4px;font-family:'JetBrains Mono';}
+
+  ul.plain{padding-left:18px;margin:8px 0;}
+  ul.plain li{font-size:13.5px;color:#c4d5ea;line-height:1.6;}
+  .book{font-size:13px;color:var(--text);}
+  .book .free{color:var(--ok);font-family:'JetBrains Mono';font-size:10px;border:1px solid rgba(61,220,151,.4);padding:1px 6px;margin-left:6px;}
+
+  .terminal{background:#000308;border:1px solid var(--line-strong);font-family:'JetBrains Mono';font-size:12.5px;padding:14px;}
+  .term-line{display:flex;gap:0;margin-bottom:8px;flex-wrap:wrap;}
+  .prompt{color:var(--ok);white-space:nowrap;}
+  .term-input{flex:1;background:none;border:none;outline:none;color:var(--text);font-family:'JetBrains Mono';font-size:12.5px;min-width:150px;}
+  .cursor{display:inline-block;width:7px;height:14px;background:var(--cyan);animation:blink 1s step-end infinite;vertical-align:middle;margin-left:2px;}
+  @keyframes blink{50%{opacity:0;}}
+  .log-scroll{max-height:280px;overflow-y:auto;margin-top:10px;border-top:1px dashed var(--line);padding-top:10px;}
+  .log-entry{padding:5px 0;font-size:12px;color:#c4d5ea;border-bottom:1px solid rgba(255,255,255,.03);}
+  .log-entry .d{color:var(--gold);margin-right:8px;}
+  .streak-row{display:flex;gap:12px;margin-top:12px;flex-wrap:wrap;}
+
+  .dsa-row{display:grid;grid-template-columns:1.6fr .8fr 2fr 1fr;gap:10px;align-items:center;padding:10px 0;border-top:1px solid var(--line);font-size:12.5px;}
+  .dsa-row:first-of-type{border-top:none;}
+  .dsa-row input[type=number]{width:56px;background:var(--bg2);color:var(--text);border:1px solid var(--line);font-family:'JetBrains Mono';padding:4px 6px;}
+  @media(max-width:700px){.dsa-row{grid-template-columns:1fr;gap:4px;}}
+
+  .proj-card{border:1px solid var(--line);background:var(--panel);padding:16px;margin-bottom:14px;}
+  .proj-card h3{margin:0 0 4px;font-size:15px;color:var(--cyan);text-transform:none;}
+  .proj-card .tie{font-family:'JetBrains Mono';font-size:10.5px;color:var(--gold);letter-spacing:.05em;text-transform:uppercase;}
+  .proj-card .strength{margin-top:8px;font-size:12px;color:var(--ok);border-top:1px dashed var(--line);padding-top:8px;}
+
+  footer{text-align:center;margin-top:40px;font-family:'JetBrains Mono';font-size:10px;color:var(--muted2);letter-spacing:.08em;}
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <div class="topbar">
+    <div class="brand">
+      <div class="glyph">R</div>
+      <div>
+        <h1>Raheem Codex // Full System</h1>
+        <div class="sub">Makerere CoCIS · BSc. Computer Science · V2021 Curriculum · Y2S1 → Y3S2</div>
+      </div>
+    </div>
+    <div class="status-chip" id="statusChip">SYSTEM ONLINE</div>
+  </div>
+
+  <div class="nav" id="nav">
+    <button data-view="dash" class="active">Today</button>
+    <button data-view="dsa">DSA</button>
+    <button data-view="sem-y2s1">Y2 · S1</button>
+    <button data-view="sem-y2s2">Y2 · S2</button>
+    <button data-view="sem-y2rt">Y2 · Recess</button>
+    <button data-view="sem-y3s1">Y3 · S1</button>
+    <button data-view="sem-y3s2">Y3 · S2</button>
+    <button data-view="projects">Final Projects</button>
+    <button data-view="memory">Memory Lab</button>
+    <button data-view="cgpa">First Class</button>
+    <button data-view="schedule">Daily Schedule</button>
+  </div>
+
+  <!-- ================= DASHBOARD / TODAY ================= -->
+  <div class="view active" id="view-dash">
+    <div class="panel">
+      <div class="eyebrow">Mission Briefing</div>
+      <h2>Today</h2>
+      <p>Second Class Upper now (CGPA 3.70). First Class is locked in as the target (CGPA ≥ 4.40), and the target grade for every remaining course is now fixed to the recommended plan below — mostly A, with four deliberate B+ "slack" courses. On the numbers, that plan lands you at roughly <b style="color:var(--ok);">4.51</b> — a real buffer above the line, not a photo finish. Full breakdown on the First Class tab.</p>
+    </div>
+
+    <div class="grid5" id="dashStats"></div>
+
+    <div class="panel">
+      <div class="eyebrow">Unified Daily Log</div>
+      <h2>raheem@codex:~$</h2>
+      <div class="terminal">
+        <div class="term-line">
+          <span class="prompt">raheem@codex:~$&nbsp;log&nbsp;--today&nbsp;"</span>
+          <input class="term-input" id="logInput" placeholder="today's win, DSA problem, or what got done...">
+          <span class="prompt">"</span>
+          <span class="cursor"></span>
+        </div>
+        <p class="muted" style="font-size:11px;margin:0 0 0 0;">Press Enter to commit the entry. One line per day is enough — it's the streak that compounds, not the length.</p>
+        <div class="streak-row" id="streakRow"></div>
+        <div class="log-scroll" id="logScroll"></div>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="panel">
+        <h2>Year II, Semester I — Active Now</h2>
+        <p class="muted" style="margin-top:-4px;">19 CU. Tap a course to open its full syllabus, memory technique, and checklist.</p>
+        <div class="course-list" id="courseListY2S1"></div>
+      </div>
+      <div class="panel">
+        <h2>The Rule</h2>
+        <p><b>Coursework is 40% of every course, every semester, all the way to graduation.</b> That's the lever within your control on a normal Tuesday, not the exam-week lever. Never miss a coursework test or assignment deadline — it is the cheapest CGPA point on offer, and the fixed target plan assumes you take every one of them.</p>
+        <h3 style="margin-top:16px;">Quick Jumps</h3>
+        <p style="font-size:12.5px;"><a href="#" data-goto="cgpa">→ First Class projection</a><br>
+        <a href="#" data-goto="dsa">→ DSA tracker</a><br>
+        <a href="#" data-goto="schedule">→ Today's hour-by-hour</a><br>
+        <a href="#" data-goto="projects">→ Final year project ideas</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= DSA TRACK ================= -->
+  <div class="view" id="view-dsa">
+    <div class="panel">
+      <div class="eyebrow">Independent Track — Runs Underneath Every Semester</div>
+      <h2>DSA / Terminal Drills</h2>
+      <p>No single semester course covers all of this end-to-end — CSC 2100/1204 gave you the foundation in Year I, but DSA fluency is what the MIT-level mastery arc actually rests on, and what technical interviews test directly. This runs in parallel to whatever semester you're in, touched daily, never fully "done."</p>
+    </div>
+    <div class="panel">
+      <h3 style="margin-top:0;">Topic Mastery</h3>
+      <div id="dsaList"></div>
+    </div>
+    <div class="panel">
+      <h2>How to Actually Run This</h2>
+      <ul class="plain">
+        <li>One problem, every single morning, before the 06:00 block ends — untimed at first, timed once a topic feels solid.</li>
+        <li>Interleave: never do 5 problems from the same topic back to back. Mix in whatever this week's rotation is (see Weekly Cadence in Daily Schedule).</li>
+        <li>All resources below are free — no paid subscriptions needed: <b>NeetCode</b> (YouTube, free roadmap), <b>Visualgo.net</b> (free algorithm visualizer), <b>LeetCode</b> free tier, <b>GeeksforGeeks</b>, and Harvard's <b>CS50</b> (free, OpenCourseWare).</li>
+        <li>Log a DSA win in the terminal on Today whenever you close out a hard problem — it counts toward the streak same as coursework.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ================= FINAL PROJECTS ================= -->
+  <div class="view" id="view-projects">
+    <div class="panel">
+      <div class="eyebrow">CSC 3118 (Project I, Y3S1) → CSC 3211 (Project II, Y3S2)</div>
+      <h2>Final Project Lab</h2>
+      <p>Project I is the concept paper/proposal stage; Project II is the full build, examined by a panel. They're graded on demonstrated technical depth, not on how polished the product looks. You already have five real ventures running — the trick is picking the <i>narrowest</i> technical slice of one of them that has a genuine, testable claim behind it, rather than trying to defend "I built an app." Both are fixed at an A target in the recommended plan — they're fully within your control (no surprise exam), so they're where the plan expects zero slippage.</p>
+    </div>
+    <div id="projectCards"></div>
+    <div class="panel">
+      <h2>What Makes a Project Examinable</h2>
+      <p>A panel wants a specific, falsifiable technical claim you can test and defend — "this matching algorithm outperforms plain filtering on X metric," not "I built a platform for Y." Pick one idea above, narrow it to a single mechanism, and go deep on that mechanism rather than wide on features. Start the concept paper in the first weeks of Y3S1 — Project I's whole job is to force that narrowing before you've sunk months into the wrong scope.</p>
+    </div>
+  </div>
+
+  <!-- ================= MEMORY LAB ================= -->
+  <div class="view" id="view-memory">
+    <div class="panel">
+      <div class="eyebrow">Cognitive Toolkit</div>
+      <h2>The Memory Lab</h2>
+      <p>Dense material across five semesters will not stick through re-reading. It sticks through retrieval, spacing, and connection. Below is the general system, plus the specific technique assigned to each course inside its own page.</p>
+    </div>
+    <div class="tech-grid">
+      <div class="tech-card"><h4>Spaced Repetition</h4><p>Review a fact right when you're about to forget it. Free <b>Anki</b> — one deck per course, one card per fact. 10-15 min every morning.</p><div class="ex"><b>Apply to:</b> proof laws, protocol/port numbers, SQL syntax, algorithm complexities.</div></div>
+      <div class="tech-card"><h4>Active Recall</h4><p>Close the book. Blank-paper recall of everything you remember, then check the gaps. Far stronger than re-reading.</p><div class="ex"><b>Apply to:</b> re-deriving A* from memory, re-writing the TCP handshake, redoing a normalization example blind.</div></div>
+      <div class="tech-card"><h4>Feynman Technique</h4><p>Explain it out loud in plain language to a first-year. Every stumble is a gap.</p><div class="ex"><b>Apply to:</b> "what is 3NF", "why is a Turing machine undecidable for this problem".</div></div>
+      <div class="tech-card"><h4>Interleaving</h4><p>Mix problem types within one session so you practice <i>choosing</i> the tool, not just executing one.</p><div class="ex"><b>Apply to:</b> DSA problem sets, AI search-algorithm sets, proof-technique sets.</div></div>
+      <div class="tech-card"><h4>Dual Coding</h4><p>Pair every abstract concept with a hand-drawn diagram. Creates a second memory pathway independent of text.</p><div class="ex"><b>Apply to:</b> network stacks, ER diagrams, FSMs, circuit schematics.</div></div>
+      <div class="tech-card"><h4>Elaborative Interrogation</h4><p>For every fact, force "why is this true, why does it matter here" instead of accepting it.</p><div class="ex"><b>Apply to:</b> "why 2's complement", "why Bayes' theorem instead of raw frequencies".</div></div>
+      <div class="tech-card"><h4>Chunking</h4><p>Break long procedures into 3-5 named sub-steps so working memory holds steps, not raw details.</p><div class="ex"><b>Apply to:</b> the DB app dev lifecycle, the 7-layer network stack, CSP backtracking.</div></div>
+      <div class="tech-card"><h4>Procedural / Build Memory</h4><p>Some knowledge only sticks through your hands. Wire it, query it, configure it — don't just read about it.</p><div class="ex"><b>Apply to:</b> Embedded builds, SQL mini-project, network lab configuration.</div></div>
+    </div>
+    <div class="panel" style="margin-top:16px;">
+      <h2>Your Daily Encoding Loop</h2>
+      <ul class="plain">
+        <li><b>Same day (encode):</b> new content → hand-write a one-page summary in your own words, no copying slides.</li>
+        <li><b>+1 day (retrieve):</b> blank-paper recall of yesterday's summary before reopening notes.</li>
+        <li><b>+3 days (interleave):</b> mixed problem set across the week's 2-3 most recent topics.</li>
+        <li><b>+7 days (space):</b> Anki pass + one spoken Feynman explanation.</li>
+        <li><b>Before any test:</b> full timed retrieval practice simulating real conditions.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ================= CGPA / FIRST CLASS ================= -->
+  <div class="view" id="view-cgpa">
+    <div class="panel">
+      <div class="eyebrow">Grade Projection Engine — Fixed Recommended Plan</div>
+      <h2>First Class War Room</h2>
+      <p>Makerere grades on a 5.0-point scale (A=5.0, B+=4.5, B=4.0, C+=3.5, C=3.0, D+=2.5, D=2.0). Typical classification bands run roughly: <b>First Class ≥ 4.40</b>, Second Upper 3.60–4.39, Second Lower 2.80–3.59, Pass 2.00–2.79 — confirm the exact current cutoff with the CoCIS/Academic Registrar handbook, since these bands have shifted university-wide before.</p>
+      <p><b style="color:var(--gold);">The plan below is fixed, not a suggestion to idly explore.</b> Every course across all 5 remaining semesters is set to a specific target grade chosen so the whole plan clears 4.40 with a real margin — worked out at roughly <b style="color:var(--ok);">4.51</b> final CGPA, about 0.11 above the First Class line. That margin exists so one rough patch doesn't sink the whole plan — it is not room to relax.</p>
+    </div>
+
+    <div class="panel">
+      <h2>Why Four Courses Are Set to B+, Not A</h2>
+      <p>The math needs an average of roughly 4.93 grade points across all 84 remaining credit units — essentially straight A's. Four low-stakes, pure-theory courses (marked <span class="badge slack">SLACK</span> below) are deliberately set to B+ instead, as the one place a dip is pre-approved rather than a surprise: <b>Discrete Mathematics</b> and <b>Automata, Complexity & Computability</b> (proof-heavy, no practical component), plus <b>Cryptology and Coding Theory</b> and <b>Compiler Design</b> (dense, unfamiliar theory). Every other course — especially the ones tied to Belt Intelligence, PropertyPal, the IV Sentinel, and NexFlow, where you already have a practical head start — is fixed at A. If you can pull any SLACK course up to A too, that's pure extra buffer, never subtract from it.</p>
+    </div>
+
+    <div class="panel">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:10px;">
+        <h2 style="margin:0;">Full Degree — Every Course, Fixed Targets</h2>
+        <button class="resetbtn" id="resetTargets">↺ Reset all targets to recommended</button>
+      </div>
+      <table class="cgpa-table">
+        <thead><tr><th>Course</th><th>CU</th><th>Target</th><th>Points</th></tr></thead>
+        <tbody id="cgpaBody"></tbody>
+      </table>
+
+      <div style="margin-top:16px;display:flex;gap:14px;flex-wrap:wrap;">
+        <div style="flex:1;min-width:180px;">
+          <div class="eyebrow" style="margin-bottom:4px;">Current CGPA</div>
+          <input type="number" step="0.01" id="curCgpa" style="width:100%;background:var(--bg2);color:var(--text);border:1px solid var(--line);padding:8px;font-family:'JetBrains Mono';">
+        </div>
+        <div style="flex:1;min-width:180px;">
+          <div class="eyebrow" style="margin-bottom:4px;">Cumulative CU Earned So Far</div>
+          <input type="number" id="curCredits" style="width:100%;background:var(--bg2);color:var(--text);border:1px solid var(--line);padding:8px;font-family:'JetBrains Mono';">
+          <div class="savehint">Default 44 assumes standard Y1S1(19)+Y1S2(20)+Recess(5) — edit if yours differs.</div>
+        </div>
+      </div>
+
+      <div class="cgpa-result">
+        <div class="box"><div class="v" id="y2s1Gpa">—</div><div class="l">Y2S1 GPA (this semester)</div></div>
+        <div class="box"><div class="v" id="finalCgpa">—</div><div class="l">Projected Final CGPA</div></div>
+        <div class="box"><div class="v" id="finalGap">—</div><div class="l">Buffer Above 4.40</div></div>
+      </div>
+      <div class="classify" id="classifyBox">—</div>
+    </div>
+  </div>
+
+  <!-- ================= DAILY SCHEDULE ================= -->
+  <div class="view" id="view-schedule">
+    <div class="panel">
+      <div class="eyebrow">Operating Rhythm</div>
+      <h2>Daily Schedule — 05:30 to 21:30</h2>
+      <p>Hour-by-hour template respecting your fixed wake/sleep frame, Sunday fully protected, Saturday afternoon protected. Lecture/lab blocks are placeholders — swap in your real timetable from <a href="https://timetable.mak.ac.ug/" target="_blank">timetable.mak.ac.ug</a> once published each semester; the rhythm around it (early recall, evening deep-work, nightly log) is the part that stays fixed.</p>
+      <table class="day-table">
+        <thead><tr><th>Time</th><th>Block</th><th>Type</th></tr></thead>
+        <tbody id="dayTable"></tbody>
+      </table>
+    </div>
+
+    <div class="panel">
+      <h2>Weekly Subject Rotation</h2>
+      <p class="muted" style="margin-top:-4px;">Fills the 19:30 deep-work block so every course gets touched at least once every 5 days — interleaving applied to your actual week.</p>
+      <div class="week-grid" id="weekGrid"></div>
+    </div>
+
+    <div class="panel">
+      <h2>Notes / Adjustments</h2>
+      <textarea class="notes" id="weekNotes" placeholder="Real class times once published, adjustments, anything worth remembering about how this week actually ran..."></textarea>
+      <div class="savehint" id="weekSaveHint">not yet saved</div>
+    </div>
+  </div>
+
+  <div id="semesterViews"></div>
+  <div id="courseViews"></div>
+
+</div>
+
+<footer>RAHEEM CODEX · UNIFIED SYSTEM · Makerere CoCIS BSc. Computer Science · Curriculum V2021</footer>
+
+<script>
+/* ===================== DATA ===================== */
+const SEMESTERS = [
+  { id:"y2s1", label:"Year II · Semester I", cuTotal:19, current:true,
+    courses: [
+      { id:"2105", code:"CSC 2105", name:"Discrete Mathematics", cu:3, ch:45, lh:30, ph:30, rec:4.5, slack:true,
+        tagline:"The proof-language every other course quietly assumes you already speak.",
+        why:"Makes AI's logic modules, Networks' addressing math, and DBMS's relational algebra actually make sense instead of feeling arbitrary. Weak discrete math is the most common reason strong programmers stall on algorithm-heavy courses later.",
+        modules:[
+          {t:"Logic: Propositional & First-Order Logic", h:6, items:["Truth tables & logical connectives","Quantifiers (∀, ∃) and negating quantified statements","Logical equivalence laws (De Morgan's, distributive, etc.)"]},
+          {t:"Functions & Set Theory", h:6, items:["Set operations: union, intersection, complement","Injective, surjective, bijective functions","Composition of functions and inverses"]},
+          {t:"Relations & Number Theory", h:6, items:["Equivalence relations & partitions","Divisibility, gcd/lcm, modular arithmetic","Relations as graphs/matrices"]},
+          {t:"Methods of Proof", h:9, items:["Direct proof & proof by contraposition","Proof by contradiction","Proof by cases","Proof by induction (weak & strong)"]},
+          {t:"Counting", h:6, items:["Sum rule & product rule","Permutations vs combinations","Combinatorial proofs"]},
+          {t:"Recursion", h:3, items:["Recursive definitions","Solving simple recurrence relations"]},
+          {t:"Graphs & Trees", h:9, items:["Graph terminology & representations","Isomorphism, Eulerian & Hamiltonian graphs","Bipartite graphs & matchings, Stable Marriage problem","Graph colouring"]},
+        ],
+        memory:{k:"Method of Loci + Chunking", body:"Assign each of the ~9 core logic/proof laws to a landmark on a route you actually walk. For proof techniques, chunk the four methods (direct / contradiction / cases / induction) into one mental checklist to run on every new proof."},
+        assess:{cw:40, ex:60, detail:"Assignments/tests (40%), written exam (60%). No practical component — retrieval practice on paper matters more here than anywhere else."},
+        reading:[{t:"Discrete Mathematics and Its Applications — Kenneth H. Rosen (7th Ed.)", note:"library / MUELE first — don't buy"}],
+      },
+      { id:"2106", code:"BSE 2106", name:"Computer Networks", cu:4, ch:60, lh:30, ph:60, rec:5.0,
+        tagline:"How every distributed thing you'll ever build actually talks to anything else.",
+        why:"Extends your CCNA/subnetting groundwork directly. Belt Intelligence, NexFlow, and any API-driven product live on top of what this teaches — DNS, HTTP, TCP, routing.",
+        modules:[
+          {t:"Computer Networks & the Internet", h:4, items:["Network edge vs core","Delay, loss, throughput","Protocol layers & service models"]},
+          {t:"Application Layer", h:8, items:["DNS resolution","HTTP request/response","SMTP, FTP","Peer-to-peer systems"]},
+          {t:"Transport Layer", h:8, items:["TCP vs UDP","Multiplexing & demultiplexing","TCP congestion control","Reliable data transfer"]},
+          {t:"Network Layer", h:8, items:["Routing vs forwarding","Intra/inter-domain routing algorithms","Mobile IP, queuing & scheduling"]},
+          {t:"Link Layer & Multimedia Networking", h:12, items:["Ethernet & WiFi fundamentals","Mobility in wireless networks","Multimedia comms & QoS basics"]},
+          {t:"Network Security & Management", h:12, items:["ACL, IPSec, SSL","Network measurement & management","Basic network scripting","Protocol verification"]},
+          {t:"Emerging Trends", h:8, items:["IoT networking basics","IPv6","5G overview"]},
+        ],
+        memory:{k:"Dual Coding + Mnemonic Layering", body:"For every protocol, hand-draw the layer stack it lives in immediately. Build one mnemonic for the 5-layer TCP/IP stack order, then attach each protocol to its layer word."},
+        assess:{cw:40, ex:60, detail:"Tests/assignments (40%), final exam (60%). Practical labs are core — treat every lab as graded rehearsal."},
+        reading:[{t:"Computer Networking: A Top-Down Approach — Kurose & Ross", note:"library / MUELE first"}],
+      },
+      { id:"2107", code:"CSC 2107", name:"Database Management Systems", cu:4, ch:60, lh:30, ph:60, rec:5.0,
+        tagline:"The single most directly-usable course this semester.",
+        why:"This is PropertyPal's rental-data model and ILES's PostgreSQL schema, taught properly with theory underneath. Try every ER diagram and normalization rule against a real Sinqura table immediately.",
+        modules:[
+          {t:"DB Application Development Life-Cycle", h:15, items:["History of DBMS, file-based vs database systems","Data models overview","Common mistakes in DB development"]},
+          {t:"Database Application Modeling", h:15, items:["Conceptual, logical, physical modeling","Enhanced conceptual modeling (EER)","Normalization & denormalization","Data dictionary development"]},
+          {t:"SQL, Scripting & Mini Project", h:20, items:["Core SQL (SELECT/JOIN/GROUP BY/subqueries)","PL/SQL basics","Scripting language survey","Micro-project: small database-driven app"]},
+          {t:"Advanced Topics", h:10, items:["Relational algebra","Query processing basics","Indexing & hashing","Parallel & distributed database architectures"]},
+        ],
+        memory:{k:"Feynman Technique + Build Memory", body:"For every normalization form, explain in one plain sentence what redundancy problem it removes. Then re-normalize a real table from ILES or PropertyPal by hand."},
+        assess:{cw:40, ex:60, detail:"Tests/assignment (40%), final exam (60%). The mini-project is where most of the marks and learning happen — start designing it week one."},
+        reading:[{t:"Fundamentals of Database Systems — Elmasri & Navathe (7th Ed.)", note:"library / MUELE first"}],
+      },
+      { id:"2114", code:"CSC 2114", name:"Artificial Intelligence", cu:4, ch:60, lh:30, ph:60, rec:5.0,
+        tagline:"The theory underneath every automation and LLM idea you've already had.",
+        why:"The formal backbone for Belt Intelligence's matching logic and NexFlow's n8n/LLM automations. Search, CSPs, and Bayesian reasoning are the actual decision logic behind 'which worker matches which job'.",
+        modules:[
+          {t:"Introduction to AI", h:4, items:["What counts as 'AI'","Intelligent agents & environment types"]},
+          {t:"Uninformed Search", h:8, items:["DFS, BFS","Iterative deepening search","Uniform cost search"]},
+          {t:"Informed Search & Heuristics", h:8, items:["Heuristics & admissibility","A* search and its optimality proof","Greedy best-first search"]},
+          {t:"Constraint Satisfaction Problems", h:12, items:["CSP formulation & constraint graphs","Backtracking search","Filtering, arc consistency, variable ordering","Minimum-conflicts algorithm"]},
+          {t:"Adversarial Search", h:8, items:["Minimax algorithm","Alpha-beta pruning","Expectimax & multi-agent utilities"]},
+          {t:"Non-Deterministic Search & RL", h:10, items:["Markov Decision Processes","Policies","Intro to reinforcement learning"]},
+          {t:"Bayesian Networks", h:10, items:["Representation of Bayes nets","Independence in Bayes nets","Inference"]},
+        ],
+        memory:{k:"Interleaving + Retrieval Practice", body:"Never drill one algorithm alone — mix BFS, A*, minimax, and a CSP problem in every session, forcing yourself to decide which fits first. Re-derive pseudocode from blank memory before checking."},
+        assess:{cw:40, ex:60, detail:"Continuous assessment via practical exercises/coursework (40%), final exam (60%). Assignments in Python — do the Feynman pass before opening the editor."},
+        reading:[{t:"Artificial Intelligence: A Modern Approach — Russell & Norvig (4th Ed.)", note:"library / MUELE first"}],
+      },
+      { id:"2118", code:"CSC 2118", name:"Embedded & Real-Time Systems", cu:4, ch:60, lh:30, ph:60, rec:5.0,
+        tagline:"Where code meets a breadboard — directly Smart IV Monitor and Focus Guard Pro territory.",
+        why:"Formal training for what you're already prototyping. Microcontroller fundamentals, Arduino, I/O interfacing, and RTOS scheduling map almost one-to-one onto the ESP32 work on the IV Sentinel.",
+        modules:[
+          {t:"Intro to Embedded & Real-Time Systems", h:10, items:["Properties & design of embedded systems","Embedded systems architecture","Basic electronics & circuits"]},
+          {t:"Microcontrollers & Microprocessors", h:10, items:["Basic microcontroller structure","ATtiny85, PIC, 32-bit boards","Development boards overview"]},
+          {t:"Embedded Systems with Arduino", h:15, items:["Arduino IDE & board models","Shields","Arduino C library & programming","Example projects"]},
+          {t:"I/O Interfaces", h:10, items:["Switches, analog inputs, digital outputs","Sensors & actuators","Serial interfaces, level conversion, LED displays"]},
+          {t:"Schematic Design & Simulation", h:9, items:["Circuit schematics & simulator programs","PCB design basics"]},
+          {t:"Real-Time Scheduling & RTOS", h:6, items:["Scheduling & priorities","Re-entrancy","Multi-core embedded programming basics"]},
+        ],
+        memory:{k:"Procedural (Build) Memory + Elaboration", body:"Wire the circuit yourself before the lab requires it. For every component, ask 'why this and not another' — turns a fact into a reasoned decision you'll remember under pressure."},
+        assess:{cw:40, ex:60, detail:"Tests/practical assignments (40%), final exam (60%). Heavily hands-on — the Arduino and I/O modules are best learned with a board in hand."},
+        reading:[{t:"Introduction to Embedded Systems — Lee & Seshia", note:"FREE full text at LeeSeshia.org"}],
+      },
+    ],
+    electives: [] },
+
+  { id:"y2s2", label:"Year II · Semester II", cuTotal:17,
+    courses:[
+      { id:"2203", code:"IST 2203", name:"Research Methodology", cu:4, ch:60, lh:30, ph:60, rec:5.0,
+        tagline:"The skillset behind Project I and II — and every proposal you'll ever write for funding.",
+        why:"Directly prepares the final-year project process in Y3, and doubles as the skill behind writing grant/investor-style proposals for Sinqura's ventures.",
+        modules:[
+          {t:"Introductory Concepts of Research", h:12, items:["Understanding the research process","Formulating a research problem, objectives, questions","Literature review basics"]},
+          {t:"Research Methods", h:12, items:["Quantitative vs qualitative methods","Data gathering techniques"]},
+          {t:"Research Evaluation", h:12, items:["Testing & validating results","Evaluation criteria & validation methods"]},
+          {t:"Research Application", h:12, items:["Practical application via class projects"]},
+          {t:"Report Writing", h:12, items:["Preparing a research report","Reporting findings/feedback"]},
+        ],
+        memory:{k:"Chunking", body:"Break the research process into 5 named phases (problem → method → data → evaluate → report) and always locate whatever you're doing within that chunked pipeline."},
+        assess:{cw:40, ex:60, detail:"Practical assignments on ≥5 chapters + coursework (40%), written exam (60%)."},
+        reading:[{t:"Research Methods for Students — Saunders, Lewis & Thornhill", note:"library / MUELE first"}],
+      },
+      { id:"2201", code:"CSC 2201", name:"Introduction to Machine Learning", cu:4, ch:60, lh:30, ph:60, rec:5.0,
+        tagline:"The direct upgrade path from CSC2114's AI theory into working models.",
+        why:"This is the engine room for Belt Intelligence's ranking logic and any predictive feature across your products — regression, classification, and clustering, implemented in Python.",
+        modules:[
+          {t:"Introduction to Machine Learning", h:6, items:["Supervised vs unsupervised learning","Data representation, overfitting"]},
+          {t:"Machine Learning Basics", h:10, items:["Bayes' Theorem","Gaussian Distribution & Mixture Models","Maximum Likelihood Estimation"]},
+          {t:"Feature Selection & Evaluation Metrics", h:4, items:["Feature selection methods","Model evaluation metrics"]},
+          {t:"Supervised Learning Models", h:20, items:["Linear & Logistic Regression","Naive Bayes, Decision Trees","SVM, K-Nearest Neighbour","Regularization & Gradient Descent"]},
+          {t:"Unsupervised Learning", h:8, items:["K-Means clustering","Expectation Maximisation"]},
+          {t:"Introduction to Deep Learning", h:12, items:["Multilayer Perceptron","Convolutional Neural Networks","Recurrent Neural Networks"]},
+        ],
+        memory:{k:"Interleaving + Build Memory", body:"Implement every algorithm yourself in Python rather than only reading about it — 'the best way to learn an ML method is to program it and experiment with it' is the course's own stated philosophy."},
+        assess:{cw:40, ex:60, detail:"Programming assignments (20%), written assignments/quizzes (20%), final exam — practical (30%) + written (30%)."},
+        reading:[{t:"Pattern Recognition and Machine Learning — Bishop", note:"library / MUELE — or free: Andrew Ng's ML course notes"}],
+      },
+      { id:"2202", code:"CSC 2202", name:"Cloud Computing", cu:4, ch:60, lh:45, ph:30, rec:5.0,
+        tagline:"Where every Sinqura product actually gets deployed and scaled.",
+        why:"Directly operational for PropertyPal, ILES, and anything Belt Intelligence needs to host. Covers Docker/Kubernetes/DevOps — the exact stack behind shipping real products.",
+        modules:[
+          {t:"Overview of Cloud Computing", h:6, items:["Cloud architecture & benefits","Deployment models: public, private, hybrid"]},
+          {t:"Service Models", h:6, items:["IaaS, PaaS, SaaS"]},
+          {t:"Cloud Enabling Technologies", h:12, items:["Virtualization","Data centers, broadband, containers","Git, Docker, a hypervisor"]},
+          {t:"Cloud Security", h:8, items:["Security challenges & approaches","Identity, data security & control"]},
+          {t:"Migrating Into the Cloud", h:8, items:["Case study project on a real provider"]},
+          {t:"Cloud Native & Microservices", h:5, items:["Microservices design","Serverless, Kubernetes, DevOps/CI-CD"]},
+          {t:"Project", h:15, items:["Build & host an application on a cloud platform"]},
+        ],
+        memory:{k:"Build Memory", body:"Deploy something small yourself on Crane Cloud (Makerere's own free multi-cloud layer) in week one — hosting theory sticks far better once you've actually pushed a container live."},
+        assess:{cw:40, ex:60, detail:"Practical assignments, tests, and a group project — written report + oral presentation (40%), written exam (60%)."},
+        reading:[{t:"Cloud Computing: Principles and Paradigms — Buyya, Broberg, Goscinski", note:"library — or free: Crane Cloud docs (built at Makerere)"}],
+      },
+      { id:"2210", code:"CSC 2210", name:"Automata, Complexity & Computability", cu:3, ch:45, lh:30, ph:30, rec:4.5, slack:true,
+        tagline:"The theory ceiling above every language and compiler you'll ever use.",
+        why:"Sets up CSC3205 Compiler Design directly in Y3S2, and gives you the vocabulary for 'why can't this be solved efficiently' conversations that come up in real system design.",
+        modules:[
+          {t:"Introduction", h:4, items:["Computation theory, complexity theory, automata theory"]},
+          {t:"Finite State Machines & Regular Languages", h:15, items:["DFA/NFA & equivalence","Regular expressions","Minimization of automata"]},
+          {t:"Context-Free Grammars", h:10, items:["CFG definitions, derivations, parse trees","Ambiguity in grammars"]},
+          {t:"Push-Down Automata", h:6, items:["PDA ↔ CFG equivalence","Deterministic PDAs"]},
+          {t:"Computability", h:5, items:["Turing machines","Church-Turing Thesis","Undecidable problems"]},
+          {t:"Complexity", h:5, items:["Classes P and NP","Big-O/small-o, decision trees"]},
+        ],
+        memory:{k:"Chunking + Dual Coding", body:"Draw the automata hierarchy as a nested diagram (Regular ⊂ Context-Free ⊂ Turing-decidable) and place every new machine type into that picture rather than memorizing it standalone."},
+        assess:{cw:40, ex:60, detail:"Assignments/tests (40%), written exam (60%)."},
+        reading:[{t:"Introduction to Automata Theory, Languages, and Computation — Hopcroft, Motwani, Ullman", note:"library / MUELE first"}],
+      },
+    ],
+    electives:[
+      {code:"CSC 2207", name:"Robotics", cu:4, desc:"Locomotion, kinematics, perception/sensing, localization & navigation. Extends your embedded/IoT interest toward mobile robots — pairs naturally with CSC2118.", rec:false},
+      {code:"CSC 2208", name:"Software Quality and Verification", cu:4, desc:"Software testing, QA, formal verification, configuration management. Directly strengthens Sinqura's products from 'it works on my machine' to production-grade.", rec:true, recGrade:5.0},
+      {code:"CSC 2218", name:"Software Construction", cu:4, desc:"Construction-level coding discipline — defensive programming, refactoring, technical debt management. Module detail not published in full on the department site at time of writing; confirm the breakdown with the department before choosing.", rec:false},
+    ]},
+
+  { id:"y2rt", label:"Year II · Recess Term", cuTotal:5,
+    courses:[
+      { id:"2303", code:"CSC 2303", name:"Field Attachment", cu:5, ch:75, lh:0, ph:300, rec:5.0,
+        tagline:"Supervised industry placement — no exam, evaluated on the ground.",
+        why:"This is the one credit-bearing line on your transcript that's earned outside a classroom entirely. A strong, deliberately-chosen placement is also a real network and reference for graduation.",
+        modules:[
+          {t:"Placement & Supervision", h:75, items:["Secure a placement in an organization with an IT department","Work under an assigned workplace supervisor","Makerere staff visit to assess the placement","Write a personal experience report at the end"]},
+        ],
+        memory:{k:"Elaborative Interrogation", body:"At the end of each week on placement, write down one thing you did and force yourself to explain why the organization does it that way — that's what turns a placement into transferable knowledge instead of just attendance."},
+        assess:{cw:0, ex:0, detail:"No coursework/exam split — assessed via a supervisor evaluation form plus your own written report. Fixed at an A target: this course rewards effort and documentation discipline directly, with no exam variance. Ask the department early whether a properly-supervised placement at your own venture (Sinqura/NexFlow) can qualify."},
+        reading:[{t:"No fixed reading list — organization-dependent", note:"n/a"}],
+      },
+    ],
+    electives:[] },
+
+  { id:"y3s1", label:"Year III · Semester I", cuTotal:19,
+    courses:[
+      { id:"2102b", code:"BAM 2102", name:"Entrepreneurship Principles", cu:3, ch:45, lh:30, ph:30, rec:5.0,
+        tagline:"The one course where you already have more lived experience than the syllabus.",
+        why:"Sinqura, NexFlow, and Belt Intelligence are the case study — this course formalizes what you've already been doing by instinct.",
+        modules:[
+          {t:"Entrepreneurship Scope & Theories", h:12, items:["Origins of entrepreneurship","What defines an entrepreneur"]},
+          {t:"The Entrepreneurial Process", h:15, items:["Creativity & innovation","Feasibility study & analysis","Business planning"]},
+          {t:"Creating & Developing a Business", h:12, items:["Start-up, survival, sustainability of a venture"]},
+          {t:"Role of Government & Environment", h:6, items:["Political/socioeconomic/technological conditions for entrepreneurship"]},
+        ],
+        memory:{k:"Elaboration via Real Cases", body:"For every framework taught, map it directly onto Sinqura or NexFlow before moving to the next slide — you have real data to test theory against, which almost nobody else in the class does."},
+        assess:{cw:40, ex:60, detail:"Tests/practical exercises (40%), final exam (60%). The group project is a strong place to (legitimately) use your own venture as the case."},
+        reading:[{t:"Entrepreneurship: Successfully Launching New Ventures — Barringer & Ireland", note:"library / MUELE first"}],
+      },
+      { id:"3115", code:"CSC 3115", name:"Advanced Programming", cu:4, ch:60, lh:30, ph:60, rec:5.0,
+        tagline:"The gap between 'it runs' and 'it's professional.'",
+        why:"Covers exactly the non-functional qualities — security, robustness, maintainability — that separate a hobby build from something Sinqura can sell to institutions.",
+        modules:[
+          {t:"Programming for Security", h:15, items:["Secure coding practices"]},
+          {t:"Programming for Robustness", h:15, items:["Defensive programming, error handling"]},
+          {t:"Programming for Maintainability", h:15, items:["Well-documented, well-structured software"]},
+          {t:"Trends in Programming Paradigms", h:15, items:["Mobile programming","Service-oriented architecture","Cloud computing paradigms"]},
+        ],
+        memory:{k:"Feynman + Elaboration", body:"For every piece of your own old code (Belt Intelligence, PropertyPal), ask 'would this pass a security/robustness/maintainability review' — real refactors against real code teach this faster than toy examples."},
+        assess:{cw:40, ex:60, detail:"Tests/practical assignments (40%), final exam (60%)."},
+        reading:[{t:"Refactoring: Improving the Design of Existing Code — Martin Fowler", note:"library / MUELE first"}],
+      },
+      { id:"3118", code:"CSC 3118", name:"Computer Science Project I", cu:5, ch:75, lh:0, ph:150, rec:5.0,
+        tagline:"The proposal stage — this is where scope gets decided.",
+        why:"See the Final Project Lab tab for candidate directions drawn from your own ventures. The whole point of this course is to force the narrowing before you've sunk months into the wrong scope.",
+        modules:[
+          {t:"Proposal Development", h:75, items:["Identify a non-trivial problem to solve individually or in a group","Work under an assigned supervisor","Produce a signed concept paper / proposal","Present and defend the proposal"]},
+        ],
+        memory:{k:"Elaborative Interrogation", body:"For every feature you're tempted to add to the proposal, ask 'does this test my technical claim, or is it just scope creep' — cut anything that's the second one."},
+        assess:{cw:0, ex:0, detail:"Signed proposal submitted to the department; presentation and defense to your supervisor. Fixed at A: no exam variance, fully within your control via disciplined scoping."},
+        reading:[{t:"Literature specific to your chosen project area", note:"n/a"}],
+      },
+      { id:"3119", code:"CSC 3119", name:"User Interface Design", cu:4, ch:60, lh:45, ph:30, rec:5.0,
+        tagline:"Makes every product you ship actually usable by the people you built it for.",
+        why:"Direct upgrade for PropertyPal and ILES's front-ends — user-centered design and heuristic evaluation are exactly what separates 'developer built this for developers' from something real users adopt.",
+        modules:[
+          {t:"Usability & User-Centered Design", h:15, items:["Identifying users, tasks, environment","Conceptual design"]},
+          {t:"Prototyping & Evaluation", h:15, items:["Paper & computer prototyping","Heuristic evaluation, user testing, experiment analysis"]},
+          {t:"UI Software Architecture & Human Capabilities", h:15, items:["Output/input models, conceptual models & metaphors"]},
+          {t:"Design Principles & Layout", h:15, items:["Constraints and layout","Graphic design fundamentals"]},
+        ],
+        memory:{k:"Dual Coding", body:"Sketch every design principle as an annotated screen from one of your real products (PropertyPal or ILES) — never learn a UI principle in the abstract."},
+        assess:{cw:40, ex:70, detail:"Assignments/tests (40%), practical exam (30%), final written exam (30%)."},
+        reading:[{t:"The Design of Everyday Things — Don Norman", note:"library / MUELE first"}],
+      },
+    ],
+    electives:[
+      {code:"CSC 3114", name:"Cryptology and Coding Theory", cu:3, desc:"Classical & modern ciphers, coding theory for error detection/correction, and the mathematical basis of modern crypto — the most direct extension of your stated cybersecurity interest and your Discrete Math foundation.", rec:true, recGrade:4.5, slack:true},
+      {code:"CSC 3121", name:"Computer Graphics", cu:3, desc:"Graphics hardware, geometric transformations, 2D imaging, display systems, clipping and projection algorithms.", rec:false},
+      {code:"CSC 3117", name:"Operations Research", cu:3, desc:"Linear programming, the Simplex method, Big-M method, post-optimality analysis — useful if Belt Intelligence's matching engine grows into a full optimization problem.", rec:false},
+      {code:"IST 3208", name:"Modelling & Simulation", cu:3, desc:"Simulation of operational systems, model validation, design of simulation experiments.", rec:false},
+      {code:"IST 3110", name:"Business Process Management", cu:4, desc:"Formal modeling and improvement of business processes — pairs with the entrepreneurship track.", rec:false},
+    ]},
+
+  { id:"y3s2", label:"Year III · Semester II", cuTotal:18,
+    courses:[
+      { id:"3205", code:"CSC 3205", name:"Compiler Design", cu:3, ch:45, lh:30, ph:30, rec:4.5, slack:true,
+        tagline:"Understand exactly what happens between your code and the machine.",
+        why:"Builds directly on CSC2210's automata theory. Even if you never write a full compiler again, this is what makes debugging cryptic error messages and understanding language internals click.",
+        modules:[
+          {t:"Language Translators & Compiler Structure", h:10, items:["Compilers vs interpreters","Lexical analysis, parsing, semantic analysis"]},
+          {t:"Parsing", h:12, items:["FIRST/FOLLOW functions","LL(1) parsers, LR parsers","Resolving grammar conflicts"]},
+          {t:"Semantic Analysis & Type Checking", h:12, items:["Attributes, symbol tables, name resolution","Type systems, type inference, polymorphism"]},
+          {t:"Code Generation & Optimization", h:11, items:["Runtime organization, storage allocation","Intermediate code generation","Global optimization"]},
+        ],
+        memory:{k:"Chunking", body:"Chunk the whole pipeline into 4 named stages (lex → parse → analyze → generate) and always locate whatever detail you're learning inside that pipeline."},
+        assess:{cw:40, ex:60, detail:"Assignments/tests (40%), written exam (60%). The project component (building a small compiler) is where the theory actually clicks."},
+        reading:[{t:"Compilers: Principles, Techniques, and Tools — Aho, Lam, Sethi, Ullman", note:"library / MUELE first"}],
+      },
+      { id:"3207", code:"CSC 3207", name:"Computer Security", cu:3, ch:45, lh:30, ph:30, rec:5.0,
+        tagline:"Formal grounding for the cybersecurity arc you've already been pulling on.",
+        why:"Every product you ship (PropertyPal, ILES, Belt Intelligence) becomes a real security surface once it has real users — this is where you learn to defend it properly, not by instinct.",
+        modules:[
+          {t:"Digital Security Principles", h:10, items:["Hardware-based security mechanisms","Secure operating systems"]},
+          {t:"Security Architecture & Design", h:15, items:["Security by design","Secure coding practices"]},
+          {t:"Access Control & Applications", h:12, items:["Access Control Lists","Real-world security applications"]},
+          {t:"Threats & Defenses", h:8, items:["Threats faced by connected systems","Protection techniques"]},
+        ],
+        memory:{k:"Elaborative Interrogation", body:"For every threat class you learn, immediately ask 'is any of my own deployed software exposed to this' — real exposure checks against Sinqura's live products stick far better than abstract threat models."},
+        assess:{cw:20, ex:60, detail:"Practical assignments on ≥5 chapters + written coursework (20%), written exam (60%)."},
+        reading:[{t:"Security Engineering — Ross J. Anderson", note:"library — Anderson also offers a free edition online, worth checking"}],
+      },
+      { id:"3211", code:"CSC 3211", name:"Computer Science Project II", cu:5, ch:75, lh:0, ph:150, rec:5.0,
+        tagline:"The full build — examined by a panel, not just a supervisor.",
+        why:"This is Project I's proposal turned into a working, tested system, defended in front of an examination panel. Non-functional qualities (robustness, usability, security, reliability) are explicitly tested.",
+        modules:[
+          {t:"Group Build & Documentation", h:75, items:["Implement the system proposed in Project I","Document the development process thoroughly","Test non-functional attributes: robustness, usability, security, reliability","Present and defend to an examination panel"]},
+        ],
+        memory:{k:"Build Memory + Retrieval Practice", body:"Before the panel defense, do a full blind run: explain your own system's architecture from memory with no slides, out loud, timed — exactly the condition you'll face in the room."},
+        assess:{cw:0, ex:0, detail:"Signed report submitted for examination; a panel of ~5 evaluates both the report and a live demo/defense. Fixed at A: builds directly on Project I, and is the single biggest CU block in the whole remaining plan — treat it as non-negotiable."},
+        reading:[{t:"Literature specific to your chosen project area", note:"n/a"}],
+      },
+      { id:"3217", code:"CSC 3217", name:"Emerging Trends in Computer Science", cu:3, ch:45, lh:30, ph:30, rec:5.0,
+        tagline:"Sanctioned, structured research time in whatever's actually next.",
+        why:"A built-in excuse to go deep on wherever the LLM/automation space is heading next for NexFlow, with academic rigor and a supervisor's feedback loop.",
+        modules:[
+          {t:"Directed Research", h:45, items:["Choose a theme area in consultation with staff","Conduct lightweight independent research","Present findings in a written report"]},
+        ],
+        memory:{k:"Feynman Technique", body:"Write the report as if explaining the trend to a non-technical Sinqura client who's asking 'should we care about this' — forces genuine understanding over jargon."},
+        assess:{cw:0, ex:100, detail:"Assessed entirely on the final study report. Fixed at A: fully self-directed, no exam variance."},
+        reading:[{t:"Chosen in consultation with your lecturer, based on theme", note:"n/a"}],
+      },
+    ],
+    electives:[
+      {code:"BSE 3202", name:"Distributed Systems Development", cu:4, desc:"Event-driven architectures, distributed object computing, testing distributed applications, maintainability & concurrency. Directly useful once any Sinqura product needs to scale past a single server.", rec:true, recGrade:5.0},
+      {code:"BIS 3205", name:"Data Warehousing & Business Intelligence", cu:4, desc:"Data warehouse concepts, decision-support environments, data migration & integration. Strong fit for turning Belt Intelligence's raw matching data into strategic reporting.", rec:true, recGrade:5.0},
+      {code:"BSE 2206", name:"Data Communications", cu:4, desc:"Digital vs analog transmission, transmission media, data encoding, LAN standards (802.3/4/5). A deeper physical-layer companion to Y2S1's Computer Networks.", rec:false},
+    ]},
+];
+
+const DSA_TOPICS = [
+  {id:"arrays", name:"Arrays & Strings", target:15, resource:"NeetCode Arrays & Hashing playlist (free) + LeetCode free tier"},
+  {id:"linkedlist", name:"Linked Lists", target:10, resource:"Visualgo.net/list (free) + LeetCode free tier"},
+  {id:"stacksqueues", name:"Stacks & Queues", target:10, resource:"GeeksforGeeks (free) + LeetCode free tier"},
+  {id:"recursion", name:"Recursion & Backtracking", target:12, resource:"NeetCode Backtracking playlist (free)"},
+  {id:"trees", name:"Trees & Binary Search Trees", target:15, resource:"Visualgo.net/bst (free) + LeetCode free tier"},
+  {id:"heaps", name:"Heaps & Priority Queues", target:8, resource:"NeetCode Heap playlist (free)"},
+  {id:"hashing", name:"Hash Tables", target:10, resource:"LeetCode free tier — Hashing tag"},
+  {id:"graphs", name:"Graphs (BFS/DFS/Dijkstra)", target:15, resource:"Visualgo.net/graphds (free) + CS50 (free)"},
+  {id:"sorting", name:"Sorting & Searching", target:10, resource:"Visualgo.net/sorting (free visualizer)"},
+  {id:"dp", name:"Dynamic Programming", target:18, resource:"NeetCode DP playlist (free) — the long game"},
+  {id:"greedy", name:"Greedy Algorithms", target:8, resource:"LeetCode free tier — Greedy tag"},
+  {id:"bitmanip", name:"Bit Manipulation", target:6, resource:"GeeksforGeeks Bit Manipulation (free)"},
+];
+
+const PROJECTS = [
+  {title:"Belt Intelligence — Constraint-Based Worker Matching Engine", tie:"Belt Intelligence", pitch:"Formalize worker-to-job matching as a CSP/optimization problem (skills, location, availability, wage constraints) instead of simple filtering. Draws on CSC2114 (CSPs, search) and CSC2201 (ranking models). The novel technical core is a matching algorithm you can benchmark.", strength:"Strong — has a real algorithmic contribution examiners can evaluate against a baseline."},
+  {title:"PropertyPal — Resilient Offline-First Rental Data Platform", tie:"PropertyPal / Sinqura", pitch:"Rebuild PropertyPal's DRF backend with an offline-first sync layer for low-connectivity areas — a real Ugandan infrastructure problem — deployed on Crane Cloud. Draws on CSC2107, CSC2202, CSC3119.", strength:"Strong if the sync/conflict-resolution mechanism is the thesis, not the marketplace features."},
+  {title:"IV Sentinel — Predictive Alerting Extension", tie:"Smart IV Monitor / Group 20 capstone", pitch:"Extend the existing ESP32 IV monitor with a lightweight on-device model (CSC2201) predicting flow-rate anomalies before they hit threshold, instead of reactive alarms. Draws on CSC2118 directly.", strength:"Strong — working hardware already exists; the academic contribution is the predictive layer."},
+  {title:"NexFlow — Workflow Verification Framework", tie:"NexFlow", pitch:"A framework that statically verifies n8n-style automation workflows for correctness before they run in production — catching broken branches, infinite loops, unsafe calls. Draws on CSC3205 (parsing/static analysis) and CSC3207 (security).", strength:"Ambitious — strong if narrowed to one verifiable property class rather than 'all correctness'."},
+  {title:"Focus Guard Pro — Adaptive Ergonomic Intervention", tie:"Focus Guard Pro", pitch:"Embedded posture/attention sensing that adapts intervention timing per user via reinforcement learning (CSC2201's RL module) instead of fixed timers. Draws on CSC2118 + CSC2201.", strength:"Good — the adaptive/personalization angle is the differentiator from a plain timer device."},
+];
+
+const CH_TO_GRADE = [{g:"A",p:5.0},{g:"B+",p:4.5},{g:"B",p:4.0},{g:"C+",p:3.5},{g:"C",p:3.0},{g:"D+",p:2.5},{g:"D",p:2.0}];
+
+const DAY_TEMPLATE = [
+  {time:"05:30 – 06:00", block:"Wake, hydrate, review yesterday's terminal log entry", type:"rest"},
+  {time:"06:00 – 06:30", block:"Anki spaced-repetition pass (10 min) + 1 DSA problem, untimed", type:"dsa"},
+  {time:"06:30 – 07:00", block:"Prep / breakfast / commute", type:"rest"},
+  {time:"07:00 – 13:00", block:"Lectures & labs — swap in your real timetable here", type:"study"},
+  {time:"13:00 – 14:00", block:"Lunch + rest", type:"rest"},
+  {time:"14:00 – 17:00", block:"Lectures/labs continued, or free study block (varies by day)", type:"study"},
+  {time:"17:00 – 19:00", block:"Venture block — Sinqura / NexFlow / Belt Intelligence work", type:"venture"},
+  {time:"19:00 – 19:30", block:"Dinner", type:"rest"},
+  {time:"19:30 – 21:00", block:"Deep work: this week's rotating subject (see below) + 1 more DSA problem", type:"study"},
+  {time:"21:00 – 21:20", block:"Terminal log entry for the day + top 3 goals for tomorrow", type:"log"},
+  {time:"21:20 – 21:30", block:"Wind down, lights out prep", type:"rest"},
+];
+const SAT_NOTE = "Saturday: same wake and morning DSA/Anki routine; from 13:00 onward is PROTECTED — leisure, no coursework guilt.";
+const SUN_NOTE = "Sunday: full rest day. Optional 10-min Anki pass only if you want it — everything else is off.";
+
+// Source: MAK-TMS Teaching Timetable, 2026/2027 Semester I, CoCIS, Group CS-2
+const WEEK = [
+  {d:"Mon", subj:"AI (CSC 2114) — 12:00–16:00, LLT 5B, Rose Nakibuule"},
+  {d:"Tue", subj:"Discrete Mathematics (CSC 2105) — 12:00–14:00, LLT 1B, John Kizito"},
+  {d:"Wed", subj:"Networks (BSE 2106) 08:00–10:00 LLT 5A · Discrete Math (CSC 2105) 11:00–12:00 LLT 2C · Embedded (CSC 2118) 14:00–16:00 Hi-Train-Lab, Mary Nsabagwa"},
+  {d:"Thu", subj:"Databases (CSC 2107) — 11:00–13:00, LLT 4A, Emmanuel Lule"},
+  {d:"Fri", subj:"Networks Lab (BSE 2106) 10:00–12:00 Lab 1, Tonny Bulega · Databases (CSC 2107) 12:00–14:00 LLT 6A · Embedded (CSC 2118) 14:00–16:00 Hi-Train-Lab"},
+  {d:"Sat", subj:"Weakest-topic catch-up (morning only)"}, {d:"Sun", subj:"Rest — protected"},
+];
+
+/* ===================== STATE / STORAGE ===================== */
+const DEFAULT_STATE = { checks:{}, cgpa:{}, notes:"", dailyLog:[], dsaCounts:{}, curCgpa:3.70, curCredits:44 };
+let STATE = Object.assign({}, DEFAULT_STATE);
+const STORE_KEY = "raheem-codex-full-state-v2";
+
+async function loadState(){
+  try{
+    const raw = localStorage.getItem(STORE_KEY);
+    if(raw){ STATE = Object.assign({}, DEFAULT_STATE, JSON.parse(raw)); }
+  }catch(e){ /* first run, or storage blocked (private mode) */ }
+  render();
+}
+let saveTimer=null;
+function saveState(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(()=>{
+    try{
+      localStorage.setItem(STORE_KEY, JSON.stringify(STATE));
+      const h = document.getElementById('weekSaveHint');
+      if(h) h.textContent = "saved " + new Date().toLocaleTimeString();
+    }catch(e){
+      console.error("save failed", e);
+      const h = document.getElementById('weekSaveHint');
+      if(h) h.textContent = "save failed — check browser storage settings";
+    }
+  }, 400);
+}
+
+function allCourses(){ return SEMESTERS.flatMap(s=>s.courses); }
+
+/* Build the flat list of rows (courses + representative electives) used by the CGPA engine */
+function allTargetRows(){
+  const rows = [];
+  SEMESTERS.forEach(sem=>{
+    sem.courses.forEach(c=>{
+      rows.push({key:"course:"+c.id, label:c.name, code:c.code, cu:c.cu, rec:c.rec, slack:!!c.slack, semLabel:sem.label, elective:false});
+    });
+    sem.electives.filter(e=>e.rec).forEach(e=>{
+      rows.push({key:"elective:"+sem.id+":"+e.code, label:e.name+" (elective)", code:e.code, cu:e.cu, rec:e.recGrade, slack:!!e.slack, semLabel:sem.label, elective:true});
+    });
+  });
+  return rows;
+}
+
+/* ===================== DASHBOARD ===================== */
+function totalChecks(){
+  let total=0, done=0;
+  allCourses().forEach(c=>c.modules.forEach(m=>m.items.forEach((_,i)=>{
+    total++;
+    if(STATE.checks[c.id+"-"+m.t+"-"+i]) done++;
+  })));
+  return {total, done};
+}
+function computeStreak(){
+  const dates = new Set(STATE.dailyLog.map(e=>e.date));
+  let streak=0;
+  let d = new Date();
+  if(!dates.has(d.toISOString().slice(0,10))) d.setDate(d.getDate()-1);
+  while(dates.has(d.toISOString().slice(0,10))){
+    streak++; d.setDate(d.getDate()-1);
+  }
+  return streak;
+}
+function projection(){
+  const rows = allTargetRows();
+  let totalCU=0, totalPts=0;
+  const y2s1Rows = rows.filter(r=>r.semLabel==="Year II · Semester I");
+  let y2s1CU=0, y2s1Pts=0;
+  rows.forEach(r=>{
+    const g = STATE.cgpa[r.key] ?? r.rec;
+    totalCU += r.cu; totalPts += g*r.cu;
+    if(r.semLabel==="Year II · Semester I"){ y2s1CU+=r.cu; y2s1Pts+=g*r.cu; }
+  });
+  const y2s1Gpa = y2s1CU? y2s1Pts/y2s1CU : 0;
+  const curCgpa = STATE.curCgpa ?? 3.70;
+  const curCredits = STATE.curCredits ?? 44;
+  const finalCredits = curCredits + totalCU;
+  const finalPts = curCgpa*curCredits + totalPts;
+  const finalCgpa = finalCredits? finalPts/finalCredits : 0;
+  return {y2s1Gpa, finalCgpa, gap: finalCgpa-4.40, curCgpa, curCredits, totalCU};
+}
+function renderStatusChip(){
+  const {total,done} = totalChecks();
+  const p = projection();
+  document.getElementById('statusChip').textContent = `ONLINE · ${done}/${total} QUESTS · ${computeStreak()}-DAY STREAK · PROJECTED ${p.finalCgpa.toFixed(2)}`;
+}
+function renderDashStats(){
+  const {total,done} = totalChecks();
+  const p = projection();
+  const el = document.getElementById('dashStats');
+  el.innerHTML = `
+    <div class="panel stat"><div class="num">${p.curCgpa.toFixed(2)}</div><div class="lbl">Current CGPA · Second Upper</div></div>
+    <div class="panel stat"><div class="num" style="color:var(--ok);">${p.finalCgpa.toFixed(2)}</div><div class="lbl">Projected Final (fixed plan)</div></div>
+    <div class="panel stat"><div class="num">4.40</div><div class="lbl">First Class Line</div></div>
+    <div class="panel stat"><div class="num">${computeStreak()}</div><div class="lbl">Day Log Streak</div></div>
+    <div class="panel stat"><div class="num">${done}/${total}</div><div class="lbl">Quests Logged (all 5 semesters)</div></div>
+  `;
+}
+function renderCourseListY2S1(){
+  const sem = SEMESTERS.find(s=>s.id==="y2s1");
+  const el = document.getElementById('courseListY2S1');
+  el.innerHTML = sem.courses.map(c=>{
+    const totalItems = c.modules.reduce((a,m)=>a+m.items.length,0);
+    const doneItems = c.modules.reduce((a,m)=>a+m.items.filter((_,i)=>STATE.checks[c.id+"-"+m.t+"-"+i]).length,0);
+    return `<div class="course-card" data-goto="course-${c.id}">
+      <div class="code">${c.code} · ${c.cu} CU ${c.slack?'<span class=\"badge slack\">SLACK</span>':''}</div>
+      <h3>${c.name}</h3>
+      <p style="font-size:12.5px;margin:4px 0 0;">${c.tagline}</p>
+      <div class="meta"><span class="pill">${doneItems}/${totalItems} logged</span><span class="pill">Target ${CH_TO_GRADE.find(g=>g.p===c.rec)?.g||c.rec}</span></div>
+    </div>`;
+  }).join("");
+  el.querySelectorAll('[data-goto]').forEach(n=>n.addEventListener('click', ()=>goto(n.dataset.goto)));
+}
+
+/* ===================== TERMINAL LOG ===================== */
+function todayStr(){ return new Date().toISOString().slice(0,10); }
+function renderLog(){
+  const scroll = document.getElementById('logScroll');
+  const entries = STATE.dailyLog.slice().reverse();
+  scroll.innerHTML = entries.length ? entries.map(e=>`<div class="log-entry"><span class="d">${e.date}</span>${escapeHtml(e.text)}</div>`).join("") : `<div class="log-entry muted">No entries yet. Log today's first win above.</div>`;
+  const streak = computeStreak();
+  document.getElementById('streakRow').innerHTML = `<span class="pill data">${entries.length} total entries</span><span class="pill data">${streak}-day streak</span>`;
+}
+function escapeHtml(s){ const d=document.createElement('div'); d.textContent=s; return d.innerHTML; }
+function initTerminal(){
+  const input = document.getElementById('logInput');
+  input.addEventListener('keydown', (e)=>{
+    if(e.key==='Enter' && input.value.trim()){
+      STATE.dailyLog.push({date: todayStr(), text: input.value.trim()});
+      input.value="";
+      saveState();
+      renderLog();
+      renderStatusChip();
+      renderDashStats();
+    }
+  });
+}
+
+/* ===================== DSA ===================== */
+function renderDsa(){
+  const el = document.getElementById('dsaList');
+  el.innerHTML = DSA_TOPICS.map(t=>{
+    const val = STATE.dsaCounts[t.id] ?? 0;
+    const pct = Math.min(100, Math.round(val/t.target*100));
+    return `<div class="dsa-row">
+      <div><b>${t.name}</b><div class="barwrap"><div class="bar" style="width:${pct}%"></div></div></div>
+      <div><input type="number" min="0" data-dsa="${t.id}" value="${val}"> / ${t.target}</div>
+      <div class="muted" style="font-size:11.5px;">${t.resource}</div>
+      <div class="data" style="text-align:right;color:${pct>=100?'var(--ok)':'var(--muted)'};">${pct}%</div>
+    </div>`;
+  }).join("");
+  el.querySelectorAll('input[data-dsa]').forEach(inp=>{
+    inp.addEventListener('input', ()=>{
+      STATE.dsaCounts[inp.dataset.dsa] = parseInt(inp.value)||0;
+      saveState();
+      renderDsa();
+    });
+  });
+}
+
+/* ===================== PROJECTS ===================== */
+function renderProjects(){
+  document.getElementById('projectCards').innerHTML = PROJECTS.map(p=>`
+    <div class="proj-card">
+      <div class="tie">Ties to: ${p.tie}</div>
+      <h3>${p.title}</h3>
+      <p>${p.pitch}</p>
+      <div class="strength">${p.strength}</div>
+    </div>`).join("");
+}
+
+/* ===================== SEMESTER + COURSE VIEWS ===================== */
+function renderSemesterViews(){
+  const wrap = document.getElementById('semesterViews');
+  wrap.innerHTML = SEMESTERS.map(sem=>`
+    <div class="view" id="view-sem-${sem.id}">
+      <button class="backbtn" data-goto="dash">← Back to Today</button>
+      <div class="panel">
+        <div class="eyebrow">${sem.cuTotal} CU (department total)${sem.current?' · CURRENTLY ACTIVE':''}</div>
+        <h2>${sem.label}</h2>
+        <div class="course-list">
+          ${sem.courses.map(c=>{
+            const totalItems = c.modules.reduce((a,m)=>a+m.items.length,0);
+            const doneItems = c.modules.reduce((a,m)=>a+m.items.filter((_,i)=>STATE.checks[c.id+"-"+m.t+"-"+i]).length,0);
+            return `<div class="course-card" data-goto="course-${c.id}">
+              <div class="code">${c.code} · ${c.cu} CU ${c.slack?'<span class=\"badge slack\">SLACK</span>':''}</div>
+              <h3>${c.name}</h3>
+              <p style="font-size:12.5px;margin:4px 0 0;">${c.tagline}</p>
+              <div class="meta"><span class="pill">${doneItems}/${totalItems} logged</span><span class="pill">Target ${CH_TO_GRADE.find(g=>g.p===c.rec)?.g||c.rec}</span></div>
+            </div>`;
+          }).join("")}
+        </div>
+        ${sem.electives.length ? `<h3>Electives — Choose ${sem.id==='y3s2'?'2':'1'}</h3>` + sem.electives.map(e=>`
+          <div class="elective-card">
+            <span class="code">${e.code} · ${e.cu} CU</span> — <span class="t">${e.name}</span>${e.rec?'<span class="badge rec">Recommended</span>':''}${e.slack?'<span class="badge slack">SLACK</span>':''}
+            <p style="margin:6px 0 0;font-size:13px;">${e.desc}</p>
+          </div>`).join("") : ""}
+      </div>
+    </div>
+  `).join("");
+  wrap.querySelectorAll('[data-goto]').forEach(n=>n.addEventListener('click', ()=>goto(n.dataset.goto)));
+}
+
+function renderCourseViews(){
+  const wrap = document.getElementById('courseViews');
+  wrap.innerHTML = allCourses().map(c=>{
+    const sem = SEMESTERS.find(s=>s.courses.includes(c));
+    return `
+    <div class="view" id="view-course-${c.id}">
+      <button class="backbtn" data-goto="sem-${sem.id}">← Back to ${sem.label}</button>
+      <div class="panel">
+        <div class="eyebrow">${c.code} · ${c.lh} Lecture Hrs · ${c.ph} Practical Hrs · ${sem.label}</div>
+        <h2>${c.name}<span class="cu-badge">${c.cu} CU</span>${c.slack?'<span class="badge slack">SLACK TARGET: B+</span>':`<span class="badge rec">TARGET: A</span>`}</h2>
+        <p style="font-style:italic;color:var(--muted);">${c.tagline}</p>
+        <div class="why"><b style="color:var(--gold);">Why it matters to you:</b> ${c.why}</div>
+
+        <h3>Modules</h3>
+        ${c.modules.map(m=>{
+          const doneItems = m.items.filter((_,i)=>STATE.checks[c.id+"-"+m.t+"-"+i]).length;
+          const cleanId = (c.id+"-"+m.t).replace(/[^a-zA-Z0-9]/g,'');
+          return `<div class="module">
+            <div class="module-head" data-toggle="${cleanId}">
+              <h4>${m.t}</h4>
+              <span class="module-hours data">${doneItems}/${m.items.length} · ${m.h}h</span>
+            </div>
+            <div class="checklist" id="cl-${cleanId}">
+              ${m.items.map((it,i)=>{
+                const key = c.id+"-"+m.t+"-"+i;
+                const checked = !!STATE.checks[key];
+                const cbId = ("chk-"+key).replace(/[^a-zA-Z0-9]/g,'');
+                return `<div class="check-item ${checked?'done':''}">
+                  <input type="checkbox" data-key="${key}" ${checked?'checked':''} id="${cbId}">
+                  <label for="${cbId}">${it}</label>
+                </div>`;
+              }).join("")}
+            </div>
+          </div>`;
+        }).join("")}
+
+        <div class="tip-box">
+          <div class="k">Memory Technique: ${c.memory.k}</div>
+          <p style="margin-top:6px;">${c.memory.body}</p>
+        </div>
+
+        <h3>Assessment</h3>
+        <div class="assess-row">
+          <div><span class="cw data">${c.assess.cw}%</span><br><span class="muted" style="font-size:10.5px;">COURSEWORK</span></div>
+          <div><span class="ex data">${c.assess.ex}%</span><br><span class="muted" style="font-size:10.5px;">EXAM</span></div>
+        </div>
+        <p style="font-size:12.5px;">${c.assess.detail}</p>
+
+        <h3>Reading</h3>
+        ${c.reading.map(r=>`<p class="book">${r.t} <span class="free">${r.note}</span></p>`).join("")}
+      </div>
+    </div>`;
+  }).join("");
+
+  wrap.querySelectorAll('[data-goto]').forEach(n=>n.addEventListener('click', ()=>goto(n.dataset.goto)));
+  wrap.querySelectorAll('[data-toggle]').forEach(n=>{
+    n.addEventListener('click', ()=>{
+      document.getElementById('cl-'+n.dataset.toggle).classList.toggle('open');
+    });
+  });
+  wrap.querySelectorAll('input[type=checkbox]').forEach(cb=>{
+    cb.addEventListener('change', ()=>{
+      STATE.checks[cb.dataset.key] = cb.checked;
+      cb.closest('.check-item').classList.toggle('done', cb.checked);
+      saveState();
+      renderStatusChip();
+      renderDashStats();
+      renderCourseListY2S1();
+      renderSemesterViews();
+    });
+  });
+}
+
+/* ===================== CGPA (unified, fixed-target) ===================== */
+function gradeOptions(sel){
+  return CH_TO_GRADE.map(g=>`<option value="${g.p}" ${Math.abs(sel-g.p)<0.01?'selected':''}>${g.g} (${g.p.toFixed(1)})</option>`).join("");
+}
+function renderCgpa(){
+  const rows = allTargetRows();
+  const body = document.getElementById('cgpaBody');
+  let html = "";
+  let lastSem = null;
+  rows.forEach(r=>{
+    if(r.semLabel !== lastSem){
+      html += `<tr class="semhead"><td colspan="4">${r.semLabel}</td></tr>`;
+      lastSem = r.semLabel;
+    }
+    const val = STATE.cgpa[r.key] ?? r.rec;
+    html += `<tr class="${r.elective?'elective-row':''}">
+      <td>${r.code} — ${r.label}${r.slack?' <span class="badge slack">SLACK</span>':''}</td>
+      <td class="data">${r.cu}</td>
+      <td><select data-key="${r.key}">${gradeOptions(val)}</select></td>
+      <td class="data" id="pts-${r.key.replace(/[^a-zA-Z0-9]/g,'')}">${(val*r.cu).toFixed(1)}</td>
+    </tr>`;
+  });
+  body.innerHTML = html;
+  body.querySelectorAll('select').forEach(s=>{
+    s.addEventListener('change', ()=>{ STATE.cgpa[s.dataset.key] = parseFloat(s.value); saveState(); computeAll(); });
+  });
+
+  document.getElementById('curCgpa').value = STATE.curCgpa;
+  document.getElementById('curCredits').value = STATE.curCredits;
+  document.getElementById('curCgpa').addEventListener('input', (e)=>{ STATE.curCgpa = parseFloat(e.target.value)||0; saveState(); computeAll(); });
+  document.getElementById('curCredits').addEventListener('input', (e)=>{ STATE.curCredits = parseFloat(e.target.value)||0; saveState(); computeAll(); });
+
+  document.getElementById('resetTargets').addEventListener('click', ()=>{
+    STATE.cgpa = {};
+    saveState();
+    renderCgpa();
+  });
+
+  computeAll();
+}
+function computeAll(){
+  const rows = allTargetRows();
+  rows.forEach(r=>{
+    const g = STATE.cgpa[r.key] ?? r.rec;
+    const cell = document.getElementById('pts-'+r.key.replace(/[^a-zA-Z0-9]/g,''));
+    if(cell) cell.textContent = (g*r.cu).toFixed(1);
+  });
+  const p = projection();
+  document.getElementById('y2s1Gpa').textContent = p.y2s1Gpa.toFixed(2);
+  document.getElementById('finalCgpa').textContent = p.finalCgpa.toFixed(2);
+  const gapEl = document.getElementById('finalGap');
+  gapEl.textContent = (p.gap>=0?'+':'')+p.gap.toFixed(2);
+  gapEl.style.color = p.gap>=0 ? 'var(--ok)' : 'var(--danger)';
+
+  const classifyEl = document.getElementById('classifyBox');
+  let cls, col;
+  if(p.finalCgpa>=4.40){cls="FIRST CLASS PROJECTED"; col="var(--ok)";}
+  else if(p.finalCgpa>=3.60){cls="SECOND CLASS UPPER PROJECTED"; col="var(--gold)";}
+  else if(p.finalCgpa>=2.80){cls="SECOND CLASS LOWER PROJECTED"; col="var(--danger)";}
+  else {cls="PASS-BAND PROJECTED"; col="var(--danger)";}
+  classifyEl.textContent = cls;
+  classifyEl.style.color = col;
+  classifyEl.style.borderColor = col;
+
+  renderStatusChip();
+  renderDashStats();
+}
+
+/* ===================== SCHEDULE ===================== */
+function renderSchedule(){
+  const tbody = document.getElementById('dayTable');
+  tbody.innerHTML = DAY_TEMPLATE.map(r=>`<tr><td class="time">${r.time}</td><td>${r.block}</td><td><span class="tag ${r.type}">${r.type}</span></td></tr>`).join("")
+    + `<tr><td class="time">Sat</td><td colspan="2" class="muted" style="font-size:12px;">${SAT_NOTE}</td></tr>`
+    + `<tr><td class="time">Sun</td><td colspan="2" class="muted" style="font-size:12px;">${SUN_NOTE}</td></tr>`;
+
+  const wk = document.getElementById('weekGrid');
+  let html = `<div class="hd">Day</div><div class="hd">19:30 Deep-Work Subject</div>`;
+  WEEK.forEach(d=>{ html += `<div style="font-family:'Chakra Petch';color:var(--text);">${d.d}</div><div class="data" style="color:var(--cyan);">${d.subj}</div>`; });
+  wk.innerHTML = html;
+  wk.style.gridTemplateColumns = "90px 1fr";
+
+  const notesEl = document.getElementById('weekNotes');
+  notesEl.value = STATE.notes || "";
+  notesEl.addEventListener('input', ()=>{ STATE.notes = notesEl.value; saveState(); });
+}
+
+/* ===================== RENDER ALL ===================== */
+function render(){
+  renderStatusChip();
+  renderDashStats();
+  renderCourseListY2S1();
+  renderLog();
+  initTerminal();
+  renderDsa();
+  renderProjects();
+  renderSemesterViews();
+  renderCourseViews();
+  renderCgpa();
+  renderSchedule();
+}
+
+/* ===================== NAV ===================== */
+function goto(viewId){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  const target = document.getElementById('view-'+viewId);
+  if(target) target.classList.add('active');
+  document.querySelectorAll('#nav button').forEach(b=>b.classList.remove('active'));
+  const navId = viewId.startsWith('sem-') ? viewId : (viewId.startsWith('course-') ? null : viewId);
+  const navBtn = navId ? document.querySelector(`#nav button[data-view="${navId}"]`) : null;
+  if(navBtn) navBtn.classList.add('active');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+document.getElementById('nav').addEventListener('click', (e)=>{
+  const btn = e.target.closest('button[data-view]');
+  if(btn) goto(btn.dataset.view);
+});
+document.addEventListener('click', (e)=>{
+  const link = e.target.closest('a[data-goto]');
+  if(link){ e.preventDefault(); goto(link.dataset.goto); }
+});
+
+loadState();
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+#separator:tab
+#html:true
+#deck:AI::CSC2114::Ch01 Introduction
+What are the four classical approaches to defining AI?	Thinking Humanly, Thinking Rationally, Acting Humanly, Acting Rationally
+Which approach does the "Thinking Humanly" definition of AI take?	Build programs whose internal reasoning mirrors human cognitive processes (validated via cognitive science / psychology / brain imaging)
+Who proposed the Turing Test and in what year?	Alan Turing, 1950 ("Computing Machinery and Intelligence")
+What does a machine need to pass the (text-only) Turing Test? (4 capabilities)	Natural language processing, knowledge representation, automated reasoning, machine learning
+What two extra capabilities does the Total Turing Test add?	Computer vision and robotics
+What is the "laws of thought" (Thinking Rationally) approach based on?	Aristotle's syllogisms / formal logic — the idea of irrefutable correct reasoning
+Give two practical problems with the "laws of thought" approach.	(1) Hard to encode informal/uncertain knowledge into strict logical form. (2) Being solvable "in principle" by logic is very different from solving it with limited time and computational resources.
+What definition of AI does the AIMA textbook actually adopt?	Acting Rationally — AI as the design of rational agents that perceive their environment and act to maximize expected goal achievement
+Define "agent" in the AI sense.	Anything that perceives its environment through sensors and acts on that environment through actuators
+Why is "acting rationally" preferred over "laws of thought"?	It's more general (covers correct inference AND acting correctly when there's no time to infer, e.g. reflexes) and it's more scientifically well-defined than "acting human"
+What is bounded/limited rationality?	Acting as well as possible given the computational resources available, since perfect rationality is infeasible in complex environments
+What is the value alignment problem?	Ensuring an AI system's objectives actually match human intentions, not just a literal or proxy version of them, so pursuing the objective doesn't cause unintended harm
+Which field gave AI the concept of utility theory and decision theory?	Economics
+Which field gave AI the McCulloch–Pitts model of the neuron, and when?	Neuroscience (as a mathematical model) — 1943, by Warren McCulloch and Walter Pitts
+Which field's contribution was formal logic and computation theory (Turing, Gödel)?	Mathematics
+Which field's contribution was self-correcting feedback systems maximizing an objective over time?	Control theory / cybernetics
+What happened at the 1956 Dartmouth Workshop and who organized it?	The term "Artificial Intelligence" was coined; organized by John McCarthy; attendees included Minsky, Shannon, Newell, Simon
+What caused the first "AI winter" (1966–1973)?	Machine translation failed to meet inflated expectations, and Minsky & Papert (1969) exposed the mathematical limits of perceptrons — funding collapsed
+Name two expert systems from the knowledge-based era (1969–1979) and their domains.	DENDRAL (chemistry — inferring molecular structure) and MYCIN (medicine — diagnosing bacterial infections)
+What revived neural networks starting in 1986?	Rediscovery and popularization of the backpropagation algorithm
+What two developments define the "Big Data" era of AI (2001–present)?	Availability of very large datasets and increased computing power enabling data-driven approaches to outperform hand-crafted knowledge systems
+What 2012 event marked the start of the deep learning breakthrough era?	Deep convolutional neural networks dramatically outperformed prior methods on the ImageNet image classification competition
+What 2016 milestone showed deep learning + search beating a human world champion?	AlphaGo defeated Lee Sedol at Go
+List three categories of AI risk discussed in Ch.1's "Risks and Benefits" section.	Any three of: lethal autonomous weapons, surveillance/privacy loss, biased decision-making, job displacement, safety-critical failures, cybersecurity threats, value alignment failure, long-term loss of control
+Why are biased ML decision systems a risk, specifically?	They are trained on historical data that reflects existing societal biases, so the model reproduces or amplifies that bias in decisions like hiring, credit, or policing
