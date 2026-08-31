@@ -1,0 +1,11 @@
+#separator:tab
+#html:true
+#deck:Embedded::CSC2118::08 Wireless
+Name the three wireless technologies available on ESP32-S3 and one defining use case for each.	Wi-Fi (internet/cloud connectivity), BLE (low-power phone pairing/wearables), ESP-NOW (direct low-latency device-to-device messaging without a router)
+Distinguish Wi-Fi Station mode from Access Point mode.	Station (STA) mode: the ESP32 connects to an existing router as a client. Access Point (AP) mode: the ESP32 itself becomes a Wi-Fi hotspot other devices connect to, often used for initial setup
+Why can't you assume Wi-Fi is connected right after calling esp_wifi_connect()?	Wi-Fi connection is asynchronous and event-driven; you must wait for the actual IP_EVENT_STA_GOT_IP event, since the connection can also fail or retry
+In BLE's GATT model, what are Services and Characteristics, and what are the Server/Client roles?	A Service groups related Characteristics (pieces of data, e.g. battery level); a Client (e.g. phone app) reads, writes, or subscribes to notifications from Characteristics exposed by a Server (often the ESP32)
+Why is BLE much lower power than Wi-Fi?	BLE devices spend most of their time in a low-power advertising or sleep state, only briefly waking to transmit, unlike Wi-Fi's more continuous radio activity
+What makes ESP-NOW lower-latency and lower-power than a full Wi-Fi connection?	It's a lightweight, connectionless protocol using just the MAC address to send short messages directly between devices, with no router, handshake, or full Wi-Fi connection overhead required
+Which wireless technology would you pick for 50 sensor nodes needing to relay data directly to each other with no router present, and why?	ESP-NOW — it enables direct low-latency, low-power peer-to-peer messaging between devices without needing any router or internet infrastructure
+On which core does the Wi-Fi/BLE protocol stack typically run as its own FreeRTOS tasks?	Core 0 (by default), leaving Core 1 free for application tasks, though this can be adjusted

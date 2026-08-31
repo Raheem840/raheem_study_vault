@@ -1,70 +1,41 @@
 {
   "main": {
-    "id": "fa813f112dea5bc7",
+    "id": "5747984018e5e41e",
     "type": "split",
     "children": [
       {
-        "id": "1115d137a489cb94",
+        "id": "2be9abd309af9d7b",
         "type": "tabs",
         "children": [
           {
-            "id": "79f958d7a05d1cd9",
+            "id": "1e5713464803dee5",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Chapter 01 - Introduction.md",
-                "mode": "preview",
-                "source": true
-              },
-              "icon": "lucide-file",
-              "title": "Chapter 01 - Introduction"
-            }
-          },
-          {
-            "id": "057e25610b4474c2",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Chapter 02 - Intelligent Agents.md",
+                "file": "08 - Wireless Communication.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Chapter 02 - Intelligent Agents"
-            }
-          },
-          {
-            "id": "f912d73eaa7d4387",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Chapter 01 - Introduction.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Chapter 01 - Introduction"
+              "title": "08 - Wireless Communication"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "018a967ce6541f33",
+    "id": "cdff9a0873f3dc66",
     "type": "split",
     "children": [
       {
-        "id": "21ee80fc64462bb1",
+        "id": "3bc0868a04a8e64f",
         "type": "tabs",
         "children": [
           {
-            "id": "73f729530f6ab771",
+            "id": "7b3f309e0b978399",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -79,7 +50,7 @@
             }
           },
           {
-            "id": "ed25f7b4ed68c463",
+            "id": "ff875b6117013a85",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -96,7 +67,7 @@
             }
           },
           {
-            "id": "d38d0abfe37b06a8",
+            "id": "5b7f990dbf52676d",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -115,20 +86,20 @@
     "width": 300
   },
   "right": {
-    "id": "9981ba1f7dd5bb1a",
+    "id": "55cb92771ab2f5eb",
     "type": "split",
     "children": [
       {
-        "id": "e540baf375a96c7f",
+        "id": "e1574df248f7ee7b",
         "type": "tabs",
         "children": [
           {
-            "id": "137fb3a3a231e878",
+            "id": "4821bcfc11ba0938",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Chapter 01 - Introduction.md",
+                "file": "08 - Wireless Communication.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -142,12 +113,12 @@
             }
           },
           {
-            "id": "f905c7407e5d6c47",
+            "id": "78a7016791aee92a",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Chapter 03 - Solving Problems by Searching.md",
+                "file": "08 - Wireless Communication.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -156,7 +127,7 @@
             }
           },
           {
-            "id": "770cf8210777845f",
+            "id": "223e969d959aafdd",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -171,7 +142,7 @@
             }
           },
           {
-            "id": "961dd093403f4beb",
+            "id": "4fe884a690f4b5f7",
             "type": "leaf",
             "state": {
               "type": "all-properties",
@@ -185,12 +156,12 @@
             }
           },
           {
-            "id": "c3460f1ec91f0bf4",
+            "id": "a40cce73d187faf3",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "Chapter 03 - Solving Problems by Searching.md",
+                "file": "08 - Wireless Communication.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -217,17 +188,15 @@
       "bases:Create new base": false
     }
   },
-  "active": "f912d73eaa7d4387",
+  "active": "1e5713464803dee5",
   "lastOpenFiles": [
-    "Chapter 01 - Introduction.md",
-    "Chapter 04 - Search in Complex Environments.md",
-    "Chapter 02 - Intelligent Agents.md",
-    "Chapter 12-13 - Bayesian Networks.md",
-    "Chapter 03 - Solving Problems by Searching.md",
-    "Chapter 19 - Learning from Examples (ML).md",
-    "Chapter 17 - Markov Decision Processes.md",
-    "Chapter 06 - Constraint Satisfaction Problems.md",
-    "00 - Course Map.md",
-    "Chapter 05 - Adversarial Search and Games.md"
+    "07 - IO and Sensor Interfacing.md",
+    "06 - Setting up the ESP-IDF Environment.md",
+    "05 - FreeRTOS Timers and Task Notifications.md",
+    "03 - FreeRTOS Fundamentals (Tasks and Scheduling).md",
+    "02b - ESP32-S3 Microcontroller.md",
+    "02 - Introduction to Embedded Systems.md",
+    "01 - C Programming Foundations for Embedded Systems.md",
+    "00 - Course Map.md"
   ]
 }

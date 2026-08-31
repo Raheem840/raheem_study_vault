@@ -1,0 +1,15 @@
+#separator:tab
+#html:true
+#deck:Embedded::CSC2118::05 Timers and Notifications
+Why use a software timer instead of vTaskDelay() for periodic actions?	vTaskDelay() blocks the calling task for the whole wait, wasting a task's stack just to wait; a software timer runs in the background and calls a callback automatically on expiry, freeing the CPU for other work
+Contrast hardware and software timer accuracy and callback context.	Hardware timers run on the microcontroller's own counter, are interrupt-based and very accurate; software timers run via the FreeRTOS Timer Service Task, depend on the system tick rate, and their callbacks run in normal task context, not an ISR
+What task actually executes every software timer's callback?	The Timer Service Task (Timer Daemon Task), a special background task FreeRTOS creates automatically
+List the parameters of xTimerCreate() in order.	Name (debug only), period (in ticks, e.g. via pdMS_TO_TICKS), auto-reload flag (pdTRUE/pdFALSE), timer ID, callback function
+What is the difference between a one-shot and an auto-reload timer?	One-shot (pdFALSE) fires once and must be manually restarted; auto-reload (pdTRUE) restarts itself automatically after each expiration
+Does xTimerCreate() start the timer automatically?	No — you must explicitly call xTimerStart() afterward, or the timer sits idle
+What does xTimerReset() do, as opposed to xTimerStart()?	xTimerReset() restarts the timer's countdown from zero (useful if it's already running and you want to extend the wait); xTimerStart() starts a stopped timer
+What is a task notification?	A lightweight built-in signal (a 32-bit value) that one task or an ISR can send directly to a specific target task, without needing a separate queue or semaphore object
+Why are task notifications faster and lighter than a queue or semaphore?	They require no separate buffer or object — the notification value is built into the receiving task's own control block — making them the lowest memory usage and fastest of the three options
+What is the main limitation of task notifications compared to a queue?	They can only carry a single 32-bit value to one specific target task, unlike a queue which can carry structured multi-field data (e.g. a struct) to potentially multiple receivers
+Describe the "timer callback notifies a worker task" pattern and its benefit.	A software timer's callback calls xTaskNotifyGive() on a worker task instead of the worker task busy-waiting with vTaskDelay(); the worker blocks efficiently on ulTaskNotifyTake() until notified, which is more efficient especially with multiple independent timers
+What does ulTaskNotifyTake(pdTRUE, portMAX_DELAY) do?	Blocks the calling task until it receives a notification, then clears the notification count (because pdTRUE), waiting indefinitely if none arrives yet

@@ -39,8 +39,10 @@ Create the empty repo on GitHub first (no README/license, so it doesn't conflict
 
 ## Status
 - [x] AI (CSC2114) — Ch.1 Introduction
+- [x] AI (CSC2114) — Ch.2 Intelligent Agents (added back — lecturer resumed teaching it)
 - [x] AI (CSC2114) — Ch.19 Machine Learning
 - [x] AI (CSC2114) — Ch.3 Search
+- [x] AI (CSC2114) — Ch.4 Search in Complex Environments (added back — lecturer resumed teaching it)
 - [x] AI (CSC2114) — Ch.17 MDPs
 - [x] AI (CSC2114) — Ch.5 Adversarial Search / Games
 - [x] AI (CSC2114) — Ch.6 CSPs
@@ -48,4 +50,4 @@ Create the empty repo on GitHub first (no README/license, so it doesn't conflict
 - [ ] Discrete Mathematics (CSC 2105)
 - [ ] Computer Networks (BSE 2106)
 - [ ] Database Management Systems (CSC 2107)
-- [ ] Embedded and Real-time Systems (CSC 2118)
+- [x] Embedded and Real-time Systems (CSC 2118) — **fully complete: Intro, ESP32-S3, FreeRTOS (3 parts), ESP-IDF setup, I/O & sensors, wireless, serial comms, security, plus the C-foundations prerequisite**

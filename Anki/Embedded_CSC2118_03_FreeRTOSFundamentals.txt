@@ -1,0 +1,18 @@
+#separator:tab
+#html:true
+#deck:Embedded::CSC2118::03 FreeRTOS Fundamentals
+What guarantee does an RTOS provide that a plain while(1) super loop does not?	Deterministic behaviour — tasks run predictably within a known time frame, instead of one slow step delaying everything else
+List 5 reasons FreeRTOS is preferred over a super loop for IoT/embedded projects.	True multitasking, better code organization (independent tasks), precise non-blocking timing, improved responsiveness for high-priority tasks, and easier scalability
+List the parameters of xTaskCreate() in order.	Task function pointer, task name (debug only), stack size (in words), optional parameters (void*), priority, optional task handle output
+List the 5 FreeRTOS task states.	Running, Ready, Blocked, Suspended, Deleted
+Distinguish Blocked from Suspended.	Blocked is temporary and automatic — waiting on a delay, queue, or event; Suspended is indefinite and explicit — only resumes when another task calls vTaskResume()
+In FreeRTOS priority numbering, does a higher number mean more or less important?	More important — priority 0 is lowest, no fixed upper limit, and the scheduler always runs the highest-priority Ready task
+What happens when two tasks share the same priority and are both ready?	The scheduler shares CPU time between them via round-robin time slicing, each getting a tick interval before switching
+What does vTaskPrioritySet() do?	Changes a task's priority while the program is running; the scheduler immediately re-evaluates and reallocates CPU time accordingly
+Contrast vTaskDelay() and vTaskDelayUntil().	vTaskDelay(ticks) waits a relative number of ticks from when it's called; vTaskDelayUntil() waits until a fixed absolute time point, preventing timing drift even if the task's own processing time varies each cycle
+Define context switching.	Saving the current task's CPU state (registers, stack pointer, program counter) and restoring a different task's previously saved state so it resumes exactly where it left off
+List the 4 triggers of a context switch.	Preemption (higher-priority task becomes ready), time slicing (equal-priority round-robin), blocking (task waits on delay/event), ISR yield (interrupt unblocks a higher-priority task)
+Why does context switching have a real performance cost?	Each switch consumes CPU cycles saving and restoring registers and updating stacks, introducing a few microseconds of latency; very frequent switching adds meaningful overhead
+Why does the ESP32 (dual-core) run two FreeRTOS schedulers?	Because it has two physical cores (Core 0 and Core 1), each running its own scheduler; tasks can be pinned to a specific core with xTaskCreatePinnedToCore()
+What does uxTaskGetStackHighWaterMark() return, and what does a small value indicate?	The minimum free stack space a task has had during its lifetime; a small value means the task is close to a stack overflow and its allocated stack size should be increased
+Contrast preemptive and cooperative scheduling on responsiveness and risk.	Preemptive: scheduler can interrupt anytime, high responsiveness, low risk of one task blocking others. Cooperative: task must voluntarily yield, moderate responsiveness (depends on yielding), high risk of one long task starving others

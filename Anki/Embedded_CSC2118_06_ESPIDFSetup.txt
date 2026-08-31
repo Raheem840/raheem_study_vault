@@ -1,0 +1,12 @@
+#separator:tab
+#html:true
+#deck:Embedded::CSC2118::06 ESP-IDF Setup
+What is ESP-IDF?	The official free open-source SDK for ESP32-family chips, bundling the compiler toolchain, build system, FreeRTOS, and peripheral driver libraries
+What function is the entry point of every ESP-IDF application?	void app_main(void), called by the ESP-IDF startup code after the system (including FreeRTOS) is already initialized
+Give the idf.py command to target the ESP32-S3 chip specifically.	idf.py set-target esp32s3
+What does idf.py menuconfig do, and where are the resulting choices saved?	Opens a text-based configuration menu for project-wide settings (e.g. FreeRTOS tick rate, flash size, Wi-Fi stack); choices are saved to the sdkconfig file in the project root
+Give the idf.py command sequence to compile, upload, and view serial output in one go.	idf.py -p PORT flash monitor
+What does idf.py fullclean do, and when would you use it?	Wipes the build directory; useful when switching chip targets or resolving strange/stale build errors
+Name two common beginner mistakes that cause ESP-IDF build/flash failures.	Forgetting to run idf.py set-target before the first build (defaults to plain ESP32), and specifying the wrong serial port in -p PORT
+Why must you 'source' export.sh (or run export.bat) in each new terminal session?	It sets up the environment variables (PATH to the toolchain, Python environment, etc.) needed for the idf.py command to be found and work correctly
+What is stored in a project's main/ folder?	The main/CMakeLists.txt (declares source files) and main.c, which contains app_main()

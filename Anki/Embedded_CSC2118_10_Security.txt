@@ -1,0 +1,11 @@
+#separator:tab
+#html:true
+#deck:Embedded::CSC2118::10 Security
+Give two reasons embedded security is harder than server security.	Embedded devices are often physically accessible to attackers (can be probed/desoldered), have limited compute for heavy cryptography, and are deployed in the field for years without easy updates
+What does Secure Boot verify, and how is trust established from power-on?	It verifies that firmware is cryptographically signed by the developer before running it, via a chain of trust starting from an immutable first-stage bootloader burned into the chip's silicon/eFuses
+Why do you need Flash Encryption in addition to Secure Boot, not instead of it?	Secure Boot only stops unauthorized firmware from running; it doesn't stop an attacker with physical access from reading the flash chip's contents directly. Flash Encryption protects data at rest, so both together cover both attack angles
+What does TLS protect against, and what ESP-IDF library implements it?	Eavesdropping and man-in-the-middle attacks on network communication, by encrypting data in transit and verifying server identity via certificates; implemented via mbedTLS in ESP-IDF
+What two conditions make an OTA (over-the-air) update mechanism secure?	The update must be fetched over TLS (confidentiality/integrity in transit) AND the new firmware image must be signed and verified by Secure Boot before being accepted
+What does NVS encryption protect specifically?	Key-value data stored in the Non-Volatile Storage partition, such as Wi-Fi credentials and calibration data, built on top of Flash Encryption
+Name three concrete attack surfaces on a deployed IoT device and their mitigations.	Physical flash access (mitigated by Flash Encryption), malicious firmware flashing (mitigated by Secure Boot), network eavesdropping (mitigated by TLS) — also valid: insecure OTA (signed firmware + TLS) or debug/JTAG left enabled (disable in production)
+What happens to the Secure Boot signing key digest once burned into eFuses on ESP32-S3?	It becomes a permanent, one-time-programmable hardware lock that cannot be undone

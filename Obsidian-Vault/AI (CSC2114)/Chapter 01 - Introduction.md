@@ -66,16 +66,16 @@ Also: a rational agent's goals should be **the human's actual goals**, not a lit
 
 You don't need essays on each, just **field → what it gave AI**:
 
-| Field | Contribution to AI |
-|---|---|
-| Philosophy | Logic, mind-as-machine idea, foundations of rational reasoning, the mind-body problem |
-| Mathematics | Formal logic, computation theory (Turing/Gödel), probability theory, decision theory, optimization |
-| Economics | Utility theory, decision theory, game theory, operations research (making decisions that maximize payoff) |
-| Neuroscience | How brains (networks of neurons) process information — inspiration for neural networks |
-| Psychology | Cognitive science — how humans perceive, represent knowledge, and reason (feeds "thinking humanly") |
-| Computer engineering | The hardware that makes AI computation physically possible (Moore's law era → GPUs/TPUs era) |
+| Field                        | Contribution to AI                                                                                                         |
+| ---------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Philosophy                   | Logic, mind-as-machine idea, foundations of rational reasoning, the mind-body problem                                      |
+| Mathematics                  | Formal logic, computation theory (Turing/Gödel), probability theory, decision theory, optimization                         |
+| Economics                    | Utility theory, decision theory, game theory, operations research (making decisions that maximize payoff)                  |
+| Neuroscience                 | How brains (networks of neurons) process information — inspiration for neural networks                                     |
+| Psychology                   | Cognitive science — how humans perceive, represent knowledge, and reason (feeds "thinking humanly")                        |
+| Computer engineering         | The hardware that makes AI computation physically possible (Moore's law era → GPUs/TPUs era)                               |
 | Control theory & cybernetics | Self-correcting feedback systems that maximize an objective function over time — close cousin to the "rational agent" idea |
-| Linguistics | Formal grammar, meaning, and how knowledge relates to language → gave rise to computational linguistics / NLP |
+| Linguistics                  | Formal grammar, meaning, and how knowledge relates to language → gave rise to computational linguistics / NLP              |
 
 > Exam trap: they'll sometimes ask "which field gave AI the concept of X" — e.g. utility theory = **economics**, not math; formal logic = **philosophy first, then math formalized it**.
 
@@ -83,18 +83,18 @@ You don't need essays on each, just **field → what it gave AI**:
 
 ## 5. History of AI (Section 1.3) — the eras (high-yield for dates/names)
 
-| Era | Years | What happened |
-|---|---|---|
-| **The gestation** | 1943–1955 | McCulloch & Pitts (1943): first mathematical model of a neuron → basis of neural nets. Turing's 1950 paper "Computing Machinery and Intelligence" introduces the Turing Test. |
-| **Birth of AI** | 1956 | **Dartmouth Workshop**, organized by John McCarthy — the term "Artificial Intelligence" is coined here. Attendees include Marvin Minsky, Claude Shannon, Allen Newell, Herbert Simon. |
-| **Early enthusiasm, great expectations** | 1952–1969 | General Problem Solver (Newell & Simon), Samuel's checkers program (early machine learning), early work on neural nets (perceptrons), Lisp invented by McCarthy. Heavy over-optimism about how fast "real" AI would arrive. |
-| **A dose of reality** | 1966–1973 | Machine translation fails to live up to promises; Minsky & Papert (1969) show perceptrons' mathematical limits → first **"AI winter"** funding cuts. |
-| **Knowledge-based / expert systems** | 1969–1979 | Shift from general-purpose reasoning to systems with lots of domain-specific knowledge, e.g. **DENDRAL** (chemistry), **MYCIN** (medical diagnosis). Key lesson: knowledge, not just clever inference, is what makes systems smart. |
-| **AI becomes an industry** | 1980s | Commercial expert systems boom; Japan's "Fifth Generation" project; then a second, smaller AI winter (~late 1980s) when expert systems proved brittle/expensive to maintain. |
-| **Return of neural networks** | 1986+ | Rediscovery/popularization of **backpropagation** revives connectionism. |
-| **AI adopts the scientific method / statistical approach** | 1987–present | Field shifts to rigorous evaluation, probability & Bayesian methods, machine learning grounded in statistics rather than hand-coded rules. |
-| **Availability of very large data sets ("Big Data")** | 2001–present | Data-driven approaches (e.g. Google's data-heavy NLP, ImageNet) start to dominate over hand-crafted knowledge. |
-| **Deep learning era** | 2011–present | Deep neural networks + big data + GPUs → breakthroughs: ImageNet (2012), **AlphaGo beats Lee Sedol (2016)**, large language models. |
+| Era                                                        | Years        | What happened                                                                                                                                                                                                                       |
+| ---------------------------------------------------------- | ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **The gestation**                                          | 1943–1955    | McCulloch & Pitts (1943): first mathematical model of a neuron → basis of neural nets. Turing's 1950 paper "Computing Machinery and Intelligence" introduces the Turing Test.                                                       |
+| **Birth of AI**                                            | 1956         | **Dartmouth Workshop**, organized by John McCarthy — the term "Artificial Intelligence" is coined here. Attendees include Marvin Minsky, Claude Shannon, Allen Newell, Herbert Simon.                                               |
+| **Early enthusiasm, great expectations**                   | 1952–1969    | General Problem Solver (Newell & Simon), Samuel's checkers program (early machine learning), early work on neural nets (perceptrons), Lisp invented by McCarthy. Heavy over-optimism about how fast "real" AI would arrive.         |
+| **A dose of reality**                                      | 1966–1973    | Machine translation fails to live up to promises; Minsky & Papert (1969) show perceptrons' mathematical limits → first **"AI winter"** funding cuts.                                                                                |
+| **Knowledge-based / expert systems**                       | 1969–1979    | Shift from general-purpose reasoning to systems with lots of domain-specific knowledge, e.g. **DENDRAL** (chemistry), **MYCIN** (medical diagnosis). Key lesson: knowledge, not just clever inference, is what makes systems smart. |
+| **AI becomes an industry**                                 | 1980s        | Commercial expert systems boom; Japan's "Fifth Generation" project; then a second, smaller AI winter (~late 1980s) when expert systems proved brittle/expensive to maintain.                                                        |
+| **Return of neural networks**                              | 1986+        | Rediscovery/popularization of **backpropagation** revives connectionism.                                                                                                                                                            |
+| **AI adopts the scientific method / statistical approach** | 1987–present | Field shifts to rigorous evaluation, probability & Bayesian methods, machine learning grounded in statistics rather than hand-coded rules.                                                                                          |
+| **Availability of very large data sets ("Big Data")**      | 2001–present | Data-driven approaches (e.g. Google's data-heavy NLP, ImageNet) start to dominate over hand-crafted knowledge.                                                                                                                      |
+| **Deep learning era**                                      | 2011–present | Deep neural networks + big data + GPUs → breakthroughs: ImageNet (2012), **AlphaGo beats Lee Sedol (2016)**, large language models.                                                                                                 |
 
 > Exam-ready anchors to memorize cold: **1943 McCulloch–Pitts**, **1950 Turing test**, **1956 Dartmouth (term coined, McCarthy)**, **1969–73 first AI winter (Minsky & Papert vs perceptrons)**, **1980s expert systems + second winter**, **1986 backprop revival**, **2012 deep learning breakthrough (ImageNet)**, **2016 AlphaGo**.
 

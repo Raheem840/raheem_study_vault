@@ -1,0 +1,17 @@
+#separator:tab
+#html:true
+#deck:Embedded::CSC2118::01 C Foundations
+What does a pointer variable store?	A memory address, rather than a direct value
+What does the * do in "int *p = &x;" followed later by "*p = 10;"?	The first * declares p as a pointer to int; the second * dereferences p, meaning "the value at the address p points to" — so *p = 10 changes x itself
+Why does every FreeRTOS task function take a void *pvParameters argument?	void* is a generic pointer type, letting one task-creation function (xTaskCreate) work for tasks needing completely different data types — the task casts it back to the real type internally
+What must you do to a void* parameter before using the data it points to?	Cast it back to its real type, e.g. int *pParam = (int *) pvParameters;
+What is a struct used for, and why is it useful with FreeRTOS queues?	Grouping related data fields into one type; lets you send multiple related values (e.g. temperature and humidity) through a queue in a single message instead of needing separate queues
+What is a function pointer?	A variable that stores the address of a function, allowing you to pass "which function to call" as a value and call it later
+Where is a function pointer used in FreeRTOS timer creation?	xTimerCreate(..., myTimerCallback) passes the address of myTimerCallback so FreeRTOS can call it automatically when the timer expires
+What does the volatile keyword tell the compiler, and why does it matter for ISR-shared variables?	It tells the compiler the variable's value can change unexpectedly (e.g. from an interrupt) and must always be re-read from memory rather than cached in a register; omitting it can cause the program to never "see" an update made by an ISR
+What does 'static' mean when declared inside a function vs at file scope?	Inside a function: the variable keeps its value between calls. At file scope: the variable/function is only visible within that .c file, not exported elsewhere
+Write the bitwise expression to set bit 5 of a register called reg.	reg |= (1 << 5);
+Write the bitwise expression to clear bit 5 of a register called reg.	reg &= ~(1 << 5);
+Write the bitwise expression to toggle bit 5 of a register called reg.	reg ^= (1 << 5);
+What does pdMS_TO_TICKS(1000) do?	Converts a millisecond value (1000ms) into the RTOS's internal tick units, since the scheduler operates in ticks, not milliseconds
+Why should you always check a FreeRTOS handle against NULL after creating it (e.g. a task, queue, or timer)?	Embedded systems have very limited memory, and creation can fail silently (e.g. out of heap) if you don't check

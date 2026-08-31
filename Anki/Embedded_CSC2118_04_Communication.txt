@@ -1,0 +1,15 @@
+#separator:tab
+#html:true
+#deck:Embedded::CSC2118::04 FreeRTOS Communication
+Name the four FreeRTOS inter-task coordination tools and their core purpose.	Queues (pass structured data), Semaphores (signal events), Mutexes (protect shared resources), Event Groups (multi-event coordination)
+What do the two parameters to xQueueCreate(length, item_size) mean?	length = how many items the queue can hold; item_size = size in bytes of each stored item
+What does passing portMAX_DELAY as the wait time to xQueueSend/xQueueReceive mean?	The task will block and wait indefinitely if the queue is full (send) or empty (receive), rather than timing out
+What three guarantees does a FreeRTOS queue provide?	Data arrives in the order it was sent, no two tasks access the data simultaneously, and a receiving task can block efficiently until new data arrives
+What are the two states of a binary semaphore?	Taken (0) or Available (1)
+Give an example use case for a binary semaphore vs a counting semaphore.	Binary: an ISR signaling a task that data is ready (one signal, one action). Counting: tracking how many buffers are free in a pool of N interchangeable resources
+What does 'ownership' mean for a mutex, and why doesn't a plain semaphore have it?	A mutex is owned by the specific task that took it (only that task should give it back); a semaphore has no owner because any task can give or take it, since it's meant for general signaling, not resource locking
+Fill in the FreeRTOS semaphore/mutex comparison: which supports priority inheritance?	Mutexes support priority inheritance; plain semaphores do not
+Explain priority inversion using Low/Medium/High priority tasks.	LowPriorityTask holds a mutex a HighPriorityTask needs; MediumPriorityTask (higher priority than Low but not needing the mutex) keeps preempting Low, so Low never finishes and releases the mutex — meaning High is indirectly blocked by Medium despite outranking it
+How does priority inheritance fix priority inversion?	While Low holds a mutex a higher-priority task is waiting for, FreeRTOS temporarily boosts Low's priority to match the waiter's, preventing Medium from preempting it, so Low finishes and releases the mutex sooner
+Why is a mutex (not a plain semaphore) the right tool for protecting a shared I2C or UART bus?	Because it's about exclusive resource access with a clear owner (only one task should hold and later release the lock), which is exactly what mutex ownership and priority inheritance are designed for
+What do xSemaphoreTake() and xSemaphoreGive() do?	xSemaphoreTake attempts to acquire (take) the semaphore/mutex, blocking if unavailable; xSemaphoreGive releases it, making it available to another waiting task

@@ -1,0 +1,18 @@
+#separator:tab
+#html:true
+#deck:AI::CSC2114::Ch02 Intelligent Agents
+Define an agent function.	A mapping from every possible percept sequence to an action — describes the agent's behaviour abstractly, as opposed to the agent program that actually implements it
+What is a percept sequence, as opposed to a single percept?	The complete history of everything the agent has perceived up to now, versus a single percept which is just the current sensor input
+State the 4 factors that determine whether an agent's action is rational.	The performance measure, the agent's prior knowledge of the environment, the actions available, and the agent's percept sequence to date
+Why should a performance measure be defined in terms of environment outcomes rather than agent behaviour?	Defining it in terms of desired outcomes (e.g. how clean the floor is) avoids the agent gaming a proxy metric of behaviour (e.g. did it visit square A then B) instead of achieving the real goal
+What does PEAS stand for?	Performance measure, Environment, Actuators, Sensors
+List the 6 dimensions used to classify task environments.	Fully vs partially observable, single-agent vs multi-agent, deterministic vs stochastic, episodic vs sequential, static vs dynamic, discrete vs continuous
+Is chess fully or partially observable, and is it deterministic or stochastic?	Fully observable and deterministic
+Is poker fully or partially observable, and why?	Partially observable — you cannot see the other players' cards
+Why are partial observability and stochasticity independent properties, not the same thing?	A partially observable environment can still be deterministic (you just can't see all of the state); a fully observable environment can still be stochastic (you see everything but outcomes are still random, e.g. visible dice)
+Distinguish episodic from sequential environments.	Episodic: each percept-action pair (episode) is independent of previous ones, e.g. image classification. Sequential: the current decision affects future decisions, e.g. chess
+What does a simple reflex agent base its action choice on, and what is its main limitation?	Only the current percept, via condition-action rules; it fails in partially observable environments since it has no memory of what it can't currently see and can get stuck in loops
+What does a model-based reflex agent add over a simple reflex agent?	An internal state that tracks unobserved aspects of the world, updated via a model of how the world evolves and how the agent's actions affect it — better handles partial observability
+What does a goal-based agent add over a model-based reflex agent?	An explicit goal (desirable situations) and the ability to consider future action sequences (search/planning) to achieve it, rather than fixed condition-action rules
+What does a utility-based agent add over a goal-based agent?	A utility function mapping states to a real number reflecting degree of happiness/preference, allowing it to weigh tradeoffs between competing or partially conflicting goals, not just achieve a binary goal
+What four components make up a learning agent?	Performance element (the actual acting agent, of any prior type), learning element (improves behaviour from experience), critic (evaluates performance against a fixed external standard), problem generator (suggests exploratory actions)

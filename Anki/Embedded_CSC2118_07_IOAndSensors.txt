@@ -1,0 +1,13 @@
+#separator:tab
+#html:true
+#deck:Embedded::CSC2118::07 IO and Sensors
+List the three main categories of I/O a microcontroller uses.	Digital I/O (GPIO), analog input (ADC), and structured serial protocols (I2C, SPI, UART)
+Why does a floating digital input pin misbehave, and what fixes it?	An unconnected pin picks up electrical noise and can randomly read as 0 or 1; a pull-up or pull-down resistor (internal or external) holds it at a known default level
+Why must ISR (interrupt service routine) code be extremely short and fast?	Because it runs with interrupts effectively disabled/blocking normal scheduling; blocking calls or heavy processing inside an ISR delays all other time-critical activity in the system
+What is the correct pattern for doing real work in response to a hardware interrupt?	The ISR does minimal work (e.g. giving a semaphore or task notification using the ISR-safe variant like xSemaphoreGiveFromISR), which wakes a normal task to do the actual slower processing outside ISR context
+What does PWM duty cycle control?	The percentage of time a digital pin is HIGH within each cycle, which determines the average power delivered (used for LED dimming, motor speed, etc.)
+What is ESP-IDF's PWM peripheral called?	LEDC (LED Controller), used generally for PWM output despite the name
+Convert a raw 12-bit ADC reading of 2048 to a voltage, assuming a 3.3V reference.	voltage = 2048 * 3.3 / 4095 ≈ 1.65V
+What is switch/button 'bounce,' and name two ways to handle it?	Rapid unintended toggling of the electrical signal for a few milliseconds when a mechanical switch is pressed/released; handled via a software debounce delay/recheck (e.g. 20-50ms) or a hardware RC filter
+Which interface does a DHT11/DHT22 sensor typically use, and what's tricky about it?	A single-wire digital protocol with precise timed pulses; it's sensitive to task delays/scheduling jitter since exact timing is required to decode the signal
+Which interface do modern sensors like the BME280 typically use?	I2C

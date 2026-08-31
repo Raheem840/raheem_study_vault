@@ -1,0 +1,15 @@
+#separator:tab
+#html:true
+#deck:Embedded::CSC2118::02 Intro and ESP32-S3
+Define an embedded system.	A computer system (processor + memory + I/O) built to perform one or a small set of dedicated functions within a larger system, usually under real-time constraints, unlike a general-purpose computer
+Distinguish hard real-time from soft real-time systems.	Hard real-time: missing a deadline is a system failure (e.g. airbag deployment). Soft real-time: missing a deadline degrades quality but isn't catastrophic (e.g. video frame timing)
+Give three differences between a microcontroller and a microprocessor.	Microcontroller integrates CPU+RAM+Flash+I/O on one chip, is cheap and low power, used for dedicated tasks; microprocessor is just the CPU, needs external RAM/storage/IO, more powerful but more expensive and power-hungry, used for general computing
+Is the ESP32-S3 a microcontroller or microprocessor?	A microcontroller — it integrates CPU, SRAM, flash controller, and dozens of peripherals on one chip
+List the 6 typical stages of the embedded system design lifecycle.	Requirements specification, hardware/software partitioning, hardware design, software/firmware development, integration and testing, deployment and maintenance
+What CPU architecture and core count does the ESP32-S3 use, and at what max clock speed?	Dual-core Xtensa LX7, 32-bit, up to 240 MHz
+Distinguish SRAM from Flash on the ESP32-S3.	SRAM (512KB on-chip) is fast memory used for running variables/stack while the program executes; Flash (external SPI flash) stores the compiled firmware persistently
+What special hardware feature does ESP32-S3 have for AI workloads?	Vector instructions for AI/ML acceleration, speeding up edge neural network inference
+What does xTaskCreatePinnedToCore() let you do?	Explicitly assign a FreeRTOS task to run on a specific CPU core (Core 0 or Core 1) rather than letting the scheduler choose
+List the 4 ESP32 power modes from highest to lowest power consumption.	Active, Modem-sleep, Light-sleep, Deep-sleep
+What is fundamentally different about waking from deep-sleep vs light-sleep?	Deep-sleep wake is effectively a reboot (app_main() runs again, most RAM was off); light-sleep resumes exactly where the code left off since RAM was retained
+What must you use to preserve data across a deep-sleep cycle?	RTC memory (declared with RTC_DATA_ATTR) or non-volatile storage (NVS), since main RAM is powered off during deep-sleep

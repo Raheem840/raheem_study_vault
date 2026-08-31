@@ -1,0 +1,13 @@
+#separator:tab
+#html:true
+#deck:Embedded::CSC2118::09 Serial Communication
+Why is serial communication (one bit at a time) often preferred over parallel, despite seeming slower?	Fewer wires means simpler, cheaper hardware, and it avoids signal skew issues that limit parallel communication speed over longer distances
+What makes UART 'asynchronous,' and what must both devices agree on beforehand?	There's no shared clock line; both devices must independently be configured to the same baud rate (bits per second) beforehand for correct framing
+List UART's frame components in order.	Start bit, data bits, optional parity bit, stop bit(s)
+What are SCL and SDA in I2C, and why does I2C need external pull-up resistors?	SCL is the shared serial clock, SDA is the shared bidirectional data line; pull-up resistors are needed because the I2C bus is open-drain — devices can only pull the line LOW, so resistors pull it back HIGH
+How does I2C address multiple devices on just 2 wires?	Each device has a unique 7-bit (or 10-bit) address; the master specifies which address it wants to communicate with before sending/receiving data
+How does SPI select a specific device among multiple slaves?	By physically driving that device's unique Chip Select (CS) line LOW — each slave needs its own dedicated CS wire from the master
+Name SPI's four typical signal lines.	SCLK (clock), MOSI (Master Out Slave In), MISO (Master In Slave Out), CS/SS (Chip Select, one per slave)
+Which of UART, I2C, and SPI is full-duplex and generally the fastest?	SPI
+Which of UART, I2C, and SPI supports multiple devices sharing just 2 wires via unique addresses?	I2C
+Two UART devices are wired without swapping TX/RX and have mismatched baud rates — predict the result.	Both TX-to-TX/RX-to-RX wiring and mismatched baud rates would prevent correct communication; specifically mismatched baud rate produces garbled/gibberish received characters even if wiring were correct
