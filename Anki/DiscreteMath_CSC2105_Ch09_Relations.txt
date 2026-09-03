@@ -1,0 +1,15 @@
+#separator:tab
+#html:true
+#deck:DiscreteMath::CSC2105::Ch09 Relations
+Define reflexive for a relation R on set A.	For all a in A, (a,a) is in R
+Define symmetric for a relation R.	For all a,b, if (a,b) is in R then (b,a) is in R
+Define antisymmetric for a relation R.	For all a,b, if (a,b) is in R and (b,a) is in R, then a = b
+Define transitive for a relation R.	For all a,b,c, if (a,b) is in R and (b,c) is in R, then (a,c) is in R
+Why are symmetric and antisymmetric NOT opposites?	A relation can be both (e.g. equality, only (a,a) pairs) or neither; failing to be symmetric does not imply antisymmetric
+What is needed to disprove a property like transitivity, versus to prove it?	Disproving needs only ONE counterexample; proving requires showing the property holds for ALL relevant pairs/triples, not just checking a few
+What three properties define an equivalence relation, and what does it guarantee?	Reflexive, symmetric, and transitive; guarantees the relation partitions the set into disjoint equivalence classes that together cover the whole set
+What are the equivalence classes of 'a ≡ b (mod 3)' on the integers?	Three classes: {...,-3,0,3,6,...}, {...,-2,1,4,7,...}, {...,-1,2,5,8,...}
+What three properties define a partial order, and how does it differ from a total order?	Reflexive, antisymmetric, and transitive; unlike a total order, not every pair of elements needs to be comparable
+Is 'divides' (a|b) on positive integers a partial order? Why, and give an example of an incomparable pair.	Yes — reflexive (a|a), antisymmetric (a|b and b|a implies a=b), transitive; 3 and 5 are incomparable since neither divides the other
+Define the composition S∘R of relations R (A to B) and S (B to C).	(a,c) is in S∘R if there exists some b in B such that (a,b) is in R and (b,c) is in S
+What does the 'transitive closure' of a relation R compute?	The smallest transitive relation containing R, found by adding all pairs reachable via any chain of R-steps

@@ -1,0 +1,14 @@
+#separator:tab
+#html:true
+#deck:Databases::CSC2107::Ch01 Introduction
+List the 5 limitations of file-based systems.	Separation and isolation of data, duplication of data, data dependence, incompatible file formats, fixed queries/proliferation of application programs
+Define a database.	A shared collection of logically related data (and its description), designed to meet the information needs of an organization
+Define a DBMS.	Software that enables users to define, create, maintain, and control access to the database
+Why are 'database' and 'DBMS' not the same thing?	The database is the DATA itself (plus its description/metadata); the DBMS is the SOFTWARE that manages and controls access to it
+List the 5 components of the DBMS environment.	Hardware, Software, Data, Procedures, People
+Distinguish the Data Administrator (DA) from the Database Administrator (DBA).	The DA manages the data resource at a policy level (standards, planning); the DBA manages the physical/technical realization of the database (implementation, security, performance, backups)
+Distinguish a naive end-user from a sophisticated end-user.	A naive user interacts via pre-written menu/form-based applications; a sophisticated user writes their own ad-hoc queries directly
+Who published the seminal paper proposing the relational model, and roughly when?	E.F. Codd, 1970
+Name three advantages of the database approach over file-based systems.	Control of data redundancy, improved data consistency, improved data sharing/integrity, improved security, improved accessibility via query languages, economy of scale, improved backup and recovery (any three)
+Name three disadvantages of the database approach.	Complexity, cost (software/hardware/staff), performance overhead from generality, higher impact of failure (centralization risk)
+Why is 'control of redundancy' a more accurate phrase than 'elimination of redundancy'?	The database approach minimizes and controls redundancy for good reasons, but doesn't claim to eliminate it entirely (e.g. controlled redundancy is sometimes intentionally introduced later for performance via denormalization)

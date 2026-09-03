@@ -47,7 +47,7 @@ Create the empty repo on GitHub first (no README/license, so it doesn't conflict
 - [x] AI (CSC2114) — Ch.5 Adversarial Search / Games
 - [x] AI (CSC2114) — Ch.6 CSPs
 - [x] AI (CSC2114) — Ch.12-13 Bayesian Networks — **AI course now fully covered per the syllabus map**
-- [ ] Discrete Mathematics (CSC 2105)
-- [ ] Computer Networks (BSE 2106)
-- [ ] Database Management Systems (CSC 2107)
 - [x] Embedded and Real-time Systems (CSC 2118) — **fully complete: Intro, ESP32-S3, FreeRTOS (3 parts), ESP-IDF setup, I/O & sensors, wireless, serial comms, security, plus the C-foundations prerequisite**
+- [x] Discrete Mathematics (CSC 2105) — **fully complete: Logic/Proofs, Sets/Functions, Algorithms, Number Theory, Induction/Recursion, Counting, Recurrence Relations, Relations, Boolean Algebra (9 chapters)**
+- [ ] Computer Networks (BSE 2106)
+- [x] Database Management Systems (CSC 2107) — **13 core chapters complete**: Intro, Environment/Architecture, Relational Model, Algebra/Calculus, SQL DML/DDL, Design Lifecycle, ER/EER Modeling, Normalization/Advanced Normalization, Transactions, Security

@@ -1,0 +1,15 @@
+#separator:tab
+#html:true
+#deck:DiscreteMath::CSC2105::Ch06 Counting
+State the product rule of counting and when to use it.	If a task has k independent sequential steps with n1, n2, ..., nk ways each, the total ways is n1*n2*...*nk; used when steps happen "AND" in sequence
+State the sum rule of counting and when to use it.	If a task can be done in one of several DISJOINT ways with n1, n2, ..., nk ways each, the total is n1+n2+...+nk; used for alternative, non-overlapping "OR" choices
+State the Inclusion-Exclusion formula for |A union B|.	|A union B| = |A| + |B| - |A intersect B|
+Give the formula for P(n,r) (permutations).	P(n,r) = n! / (n-r)!
+Give the formula for C(n,r) (combinations).	C(n,r) = n! / [r!(n-r)!]
+State the relationship between P(n,r) and C(n,r).	P(n,r) = C(n,r) * r! — a combination counts the selection, multiplying by r! accounts for all orderings of that selection
+What question should you ask to decide between a permutation and a combination?	Does rearranging the selected items create a genuinely different outcome? If yes, use a permutation; if no, use a combination
+Give the formula for permutations with repetition allowed (r positions, n choices each).	n^r
+Give the formula for arrangements of a multiset with n1 identical objects of type 1, n2 of type 2, etc. (total n objects).	n! / (n1! * n2! * ... * nk!)
+State the Pigeonhole Principle (basic form).	If more than n items are placed into n containers, at least one container has more than one item
+State the generalized Pigeonhole Principle.	Placing N items into k containers means at least one container has at least ceiling(N/k) items
+What do the coefficients in the Binomial Theorem (x+y)^n represent?	The binomial coefficients C(n,k), for each term C(n,k) x^(n-k) y^k

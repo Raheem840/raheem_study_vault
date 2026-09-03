@@ -1,0 +1,17 @@
+#separator:tab
+#html:true
+#deck:Databases::CSC2107::Ch22 Transaction Management
+Define a transaction.	A logical unit of work carried out by a single user/program, reading/updating the database, taking it from one consistent state to another, ending in either COMMIT or ROLLBACK
+Define Atomicity.	A transaction is 'all or nothing' — either all its operations complete, or none do
+Define Consistency (in ACID), and how does it differ from Isolation?	A transaction takes the database from one valid (constraint-satisfying) state to another; unlike Isolation, this is about the database's integrity constraints, not about visibility of concurrent changes
+Define Isolation.	The effects of a transaction are not visible to other concurrently-running transactions until it commits — concurrent transactions behave as if run serially
+Define Durability.	Once a transaction commits, its changes are permanent, surviving even a subsequent system crash
+Describe the lost update problem.	Two transactions both read the same value and both compute an update based on it; the second transaction's write overwrites the first's write entirely, silently losing the first update
+Describe the dirty read (uncommitted dependency) problem.	A transaction reads a value written by another transaction that hasn't committed yet; if that other transaction rolls back, the first transaction used a value that never 'really' existed
+Define serializability.	An interleaved execution of transactions is serializable if its final result is equivalent to some serial (one-at-a-time) execution of the same transactions
+Distinguish a shared (S) lock from an exclusive (X) lock.	Shared lock allows reading only, and multiple transactions can hold it simultaneously on the same item; exclusive lock allows reading and writing, and only one transaction can hold it, with no other lock allowed at the same time
+Describe the two phases of Two-Phase Locking (2PL).	Growing phase: the transaction can acquire locks but not release any; Shrinking phase: the transaction can release locks but not acquire new ones
+What does 2PL guarantee?	Serializability
+What does Strict 2PL add over plain 2PL, and what problem does it avoid?	All exclusive locks are held until the transaction actually commits or aborts, not released early in the shrinking phase; this avoids cascading rollbacks
+Define deadlock, and describe how it's typically resolved.	Two or more transactions each waiting for a lock held by the other, forming a circular wait so neither can proceed; resolved by the DBMS detecting a cycle in a wait-for graph and forcibly rolling back a 'victim' transaction
+What are the two general recovery actions using the transaction log after a crash?	REDO (reapply effects of committed transactions not yet written to disk) and UNDO (roll back effects of transactions that were in progress but not committed at the time of failure)

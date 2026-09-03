@@ -1,0 +1,15 @@
+#separator:tab
+#html:true
+#deck:DiscreteMath::CSC2105::Ch12 Boolean Algebra
+In Boolean algebra, what do '+' and '.' mean, and what's the notation trap?	'+' means OR and '.' means AND (not arithmetic addition/multiplication); e.g. 1+1 = 1 in Boolean algebra, not 2
+State De Morgan's Laws in Boolean algebra notation.	(xy)' = x' + y'  and  (x+y)' = x'y'
+State the complement law in Boolean algebra.	x * x' = 0  and  x + x' = 1
+State the absorption law in Boolean algebra.	x + (xy) = x  and  x(x+y) = x
+What is a minterm, and how do you build one from a truth table row where F=1?	The AND of all variables, uncomplemented if the variable is 1 in that row, complemented if it's 0
+What is the sum-of-products (SOP) form, and how do you build it from a truth table?	OR together the minterms for every row where the output F = 1; also called disjunctive normal form
+Derive the sum-of-products expression for XOR: F(x,y) = 1 when (x,y) = (0,1) or (1,0).	F(x,y) = x'y + xy'
+What are the three basic logic gates?	AND, OR, NOT (inverter)
+Which single gate type is functionally complete on its own?	NAND — any Boolean function, including AND, OR, and NOT, can be built purely from NAND gates
+Simplify algebraically: x + xy. Which law is used?	x + xy = x, using the absorption law
+Simplify algebraically: xy + xy'. Which laws are used, step by step?	xy + xy' = x(y+y') [distributive] = x(1) [complement law] = x [identity law]
+Why is Boolean algebra (Ch.12) described as 'mostly relabeling' of propositional logic (Ch.1)?	Every Boolean identity (De Morgan's, distributive, absorption, etc.) is the same logical equivalence from Ch.1 with AND->'.', OR->'+', True->1, False->0

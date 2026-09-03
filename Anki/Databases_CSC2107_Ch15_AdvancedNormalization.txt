@@ -1,0 +1,14 @@
+#separator:tab
+#html:true
+#deck:Databases::CSC2107::Ch15 Advanced Normalization
+State Armstrong's three basic inference rules for functional dependencies.	Reflexivity (if B is a subset of A, then A->B), Augmentation (if A->B, then AC->BC), Transitivity (if A->B and B->C, then A->C)
+Define Boyce-Codd Normal Form (BCNF).	A relation is in BCNF if, for every functional dependency A->B in the relation, A is a candidate key of the relation
+What does BCNF require beyond 3NF?	3NF only restricts dependencies of non-key attributes on the primary key; BCNF requires EVERY determinant (not just the primary key) to be a candidate key, closing a loophole involving overlapping composite candidate keys
+Why is every BCNF relation automatically in 3NF, but not every 3NF relation in BCNF?	BCNF is a strictly stronger condition — satisfying BCNF's requirement that every determinant is a candidate key automatically satisfies 3NF's weaker requirement, but the reverse isn't guaranteed
+Describe the practical approach to converting a 3NF relation that violates BCNF into BCNF.	Find a determinant that isn't a candidate key, and split the relation into two: one with that determinant and what it determines, and another with the determinant (as a foreign key) plus the remaining attributes
+What does 1NF eliminate?	Repeating groups / non-atomic values
+What does 2NF eliminate?	Partial dependencies (non-key attribute depending on only part of a composite key)
+What does 3NF eliminate?	Transitive dependencies (non-key attribute depending on another non-key attribute)
+Define a multi-valued dependency (MVD), written A ->-> B.	For a given value of A, there is a set of values of B, independent of any other attribute in the relation
+What classic problem does 4NF fix?	A relation representing two independent, unrelated multi-valued facts about the same entity in one table, causing spurious combinations; fixed by splitting the two independent multi-valued facts into separate relations
+What does a lossless-join dependency (relevant to 5NF) require?	That a relation can be split into smaller relations such that joining them back together perfectly reconstructs the original relation, with no spurious extra rows and no lost information

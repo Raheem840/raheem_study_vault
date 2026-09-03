@@ -1,0 +1,14 @@
+#separator:tab
+#html:true
+#deck:Databases::CSC2107::Ch12 ER Modeling
+Distinguish entity type from entity occurrence.	Entity type is the category/class (e.g. Staff); entity occurrence is one specific, uniquely identifiable instance of that type (e.g. one particular staff member)
+Define a unary (recursive) relationship, with an example.	A relationship that relates an entity type to ITSELF; example: Staff Supervises Staff
+Define a ternary relationship.	A relationship of degree 3, relating three entity types simultaneously, which can't always be decomposed into simpler binary relationships without losing information
+Distinguish a composite attribute from a multi-valued attribute.	Composite: made up of smaller sub-parts (e.g. address = street+city+postcode); multi-valued: can have multiple values per entity occurrence (e.g. multiple phone numbers)
+What is a derived attribute? Give an example.	An attribute computed from other attribute(s) rather than stored directly, e.g. age derived from dateOfBirth
+Distinguish a strong entity type from a weak entity type.	A strong entity type's existence doesn't depend on another entity and has its own candidate key; a weak entity type's existence depends on an owner entity and has no candidate key of its own, identified via a partial key plus the owner's key
+Can a relationship type itself have attributes? Give an example.	Yes — e.g. Staff Manages Branch could have a dateStarted attribute belonging to the relationship itself, not to either entity alone
+Distinguish cardinality from participation in structural constraints.	Cardinality describes the MAXIMUM number of relationship occurrences an entity can be involved in (1:1, 1:*, *:*); participation describes whether an entity MUST participate (mandatory) or not (optional) — the minimum
+What does (0,1) notation mean for a relationship's participation/cardinality?	Optional participation (minimum 0) with a maximum cardinality of one
+Define a fan trap and its fix.	Occurs when one entity connects to two other entities via 1:* relationships but there's no real direct relationship between those two 'many' entities, incorrectly implying connections; fixed by adding a direct relationship if one genuinely exists, or restructuring
+Define a chasm trap and its fix.	Occurs when a model implies a relationship path exists between entities, but an optional participation somewhere along the path means the path isn't guaranteed for every occurrence, losing information; fixed by adding a missing direct relationship

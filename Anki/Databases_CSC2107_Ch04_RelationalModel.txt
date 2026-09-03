@@ -1,0 +1,15 @@
+#separator:tab
+#html:true
+#deck:Databases::CSC2107::Ch04 Relational Model
+Map these everyday terms to formal relational model terms: table, row, column.	Table = relation, row = tuple, column = attribute
+Define degree and cardinality of a relation.	Degree = number of attributes (columns); cardinality = number of tuples (rows)
+List the properties a valid relation must satisfy regarding attribute values and tuple order.	Each cell holds one atomic value (no repeating groups); each attribute has a distinct name; attribute order is insignificant; each tuple is distinct (no duplicates); tuple order is insignificant
+Define a superkey.	A set of one or more attributes that, taken together, uniquely identifies a tuple in a relation
+Define a candidate key, and how does it differ from a superkey?	A minimal superkey — removing any attribute from it would cause it to lose uniqueness; every candidate key is a superkey, but not every superkey is a candidate key (superkeys can have redundant attributes)
+Define a primary key and an alternate key.	Primary key: the candidate key chosen as the main identifier for the relation; alternate key: any candidate key NOT chosen as primary
+Define a foreign key.	An attribute (or set of attributes) in one relation that matches the candidate key of some relation (possibly the same one), used to link relations together
+State entity integrity, including its scope.	In a base relation, no attribute of the PRIMARY KEY may be null — this applies only to the primary key, not to every attribute
+State referential integrity, including its null exception.	If a foreign key exists, its value must either match a candidate key value in the referenced relation, OR be entirely null
+Why is null not the same as zero or a blank value?	Null represents a value that is currently unknown or not applicable, not an actual value of zero or empty
+What is a view?	A virtual/derived relation that doesn't store data itself, but is dynamically computed from one or more base relations via a stored query
+Why might a view not be updatable?	If the DBMS can't unambiguously map an update back to the underlying base table(s) — this is typically the case for views involving joins, aggregates, or GROUP BY

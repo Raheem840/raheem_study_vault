@@ -1,0 +1,14 @@
+#separator:tab
+#html:true
+#deck:Databases::CSC2107::Ch06 SQL Data Manipulation
+State the logical order of evaluation of a SELECT statement's clauses (not the written order).	FROM -> WHERE -> GROUP BY -> HAVING -> SELECT -> ORDER BY
+Why can't you write WHERE column = NULL? What's the correct syntax?	Null isn't a value that can be compared with '='; the correct syntax is IS NULL or IS NOT NULL
+Distinguish COUNT(*) from COUNT(column).	COUNT(*) counts all rows regardless of nulls; COUNT(column) counts only rows where that specific column is NOT null — they can give different results on the same table
+State the 'golden rule' for GROUP BY.	Every column in the SELECT list that is NOT inside an aggregate function must appear in the GROUP BY clause
+Why can't you use an aggregate function in a WHERE clause?	WHERE filters individual rows BEFORE grouping/aggregation happens; aggregate values don't exist yet at that stage — use HAVING instead, which filters AFTER aggregation
+Distinguish '> ANY' from '> ALL' in a subquery comparison.	'> ANY' means greater than the SMALLEST value in the subquery's result set (easiest to satisfy); '> ALL' means greater than the LARGEST value (hardest to satisfy)
+Distinguish INNER JOIN from LEFT OUTER JOIN.	INNER JOIN returns only rows with a match on both sides; LEFT OUTER JOIN keeps every row from the left table, filling nulls for unmatched right-side columns
+What happens if you run UPDATE or DELETE without a WHERE clause?	It affects EVERY row in the table
+What does EXISTS test, as opposed to IN?	Whether the subquery returns ANY rows at all (true/false), rather than comparing actual values; often more efficient for large subqueries and required for certain 'for all'/'none' style queries
+Distinguish a scalar subquery from a multi-row subquery, and what operators each requires.	A scalar subquery returns exactly one value, usable with =, >, etc; a multi-row subquery returns multiple values and must be used with IN, ANY, ALL, or EXISTS
+What does UNION do by default regarding duplicates, and how does UNION ALL differ?	UNION removes duplicate rows by default; UNION ALL keeps all rows including duplicates

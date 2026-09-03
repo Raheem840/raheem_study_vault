@@ -1,0 +1,13 @@
+#separator:tab
+#html:true
+#deck:Databases::CSC2107::Ch05 Relational Algebra
+Distinguish Selection (sigma) from Projection (pi) in relational algebra.	Selection picks ROWS matching a condition (like SQL's WHERE); Projection picks COLUMNS (like SQL's SELECT list), removing duplicate resulting rows
+What does 'union-compatible' mean, and which operations require it?	Same number of attributes with matching domains attribute-by-attribute; required for union, intersection, and difference (but NOT Cartesian product)
+Define natural join, and how is it derived from basic operations?	An equijoin on all common attribute names with the duplicate common column removed; derived as a projection of a selection (matching the common attributes) applied to the Cartesian product of the two relations
+Distinguish left outer join, right outer join, and full outer join.	Left: keeps all rows from the left relation, nulls for unmatched right side; Right: keeps all rows from the right relation, nulls for unmatched left side; Full: keeps all rows from both, nulls wherever there's no match on either side
+What is a semijoin, and how does its result differ from a regular join?	Returns only the rows (and only the attributes) of R that would have matched in a join with S — unlike a regular join, only R's attributes appear in the output, not S's
+What does the division operation R ÷ S compute, and give an example use case.	Tuples from R's remaining attributes associated with EVERY tuple in S; example: find students who have taken EVERY course in a given department
+What does Codd's theorem say about relational algebra and relational calculus?	They are provably equivalent in expressive power — anything expressible in one is expressible in the other
+Distinguish tuple relational calculus from domain relational calculus.	Tuple relational calculus: variables range over whole tuples; domain relational calculus: variables range over individual domain (attribute) values
+What is a theta join, and how does an equijoin relate to it?	A theta join combines rows from R and S where a given condition (theta) holds, using any comparison operator; an equijoin is a theta join specifically using equality (=)
+What does the Cartesian product (x) operation produce, and how do degree/cardinality change?	Every row of R combined with every row of S (all combinations); degree adds (sum of both relations' attribute counts), cardinality multiplies (product of both relations' row counts)

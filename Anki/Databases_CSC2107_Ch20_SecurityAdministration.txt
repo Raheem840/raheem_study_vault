@@ -1,0 +1,13 @@
+#separator:tab
+#html:true
+#deck:Databases::CSC2107::Ch20 Security and Administration
+Define database security.	The mechanisms that protect the database against intentional or accidental threats, covering confidentiality, integrity, and availability of data
+List the 5 categories of database threat.	Theft and fraud, loss of confidentiality, loss of privacy, loss of integrity, loss of availability
+Distinguish accidental threats from deliberate threats, and why does this distinction matter?	Accidental: hardware/software failure, human error; deliberate: malicious attacks. It matters because countermeasures differ — e.g. backups address accidental loss, access control addresses deliberate theft
+What does authorization mean, and how does it differ from access control?	Authorization is the granting/verification of a right or privilege to a user; access control is the mechanism that enforces those granted rights at each specific operation
+How do views function as a security control?	They restrict a user's access to only the rows/columns relevant to them, hiding the rest of the underlying data
+What does encryption protect against?	Data being readable without the correct decryption key, protecting it both in storage and in transit
+What does RAID protect against specifically, as a countermeasure category?	Disk (hardware) failure, via redundancy across multiple physical disks — a different threat category than the software-level controls
+Distinguish Discretionary Access Control (DAC) from Mandatory Access Control (MAC).	DAC: the owner of an object decides who gets which privileges (implemented via SQL GRANT/REVOKE); MAC: access is governed by a system-wide policy (e.g. security classification levels) that individual owners cannot override
+Why does RAID 0 NOT improve reliability despite being a RAID technology?	RAID 0 (striping) improves performance only, with NO redundancy — it actually increases failure risk since any one disk failing loses all data across the array
+Distinguish Data Administration (DA) from Database Administration (DBA) in terms of focus.	DA focuses on the data resource at a policy/planning level (more managerial); DBA focuses on the technical implementation and operation of the database(s) (more hands-on)

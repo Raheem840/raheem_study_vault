@@ -1,0 +1,12 @@
+#separator:tab
+#html:true
+#deck:DiscreteMath::CSC2105::Ch08 Recurrence Relations
+What makes a recurrence relation 'linear,' 'homogeneous,' and of 'degree k'?	Linear: each term appears to the first power, no products of terms; homogeneous: no extra standalone (non-recursive) term added; degree k: aN depends on the k previous terms
+For a degree-2 linear homogeneous recurrence a_n = c1*a_(n-1) + c2*a_(n-2), write its characteristic equation.	r^2 - c1*r - c2 = 0
+Given distinct roots r1, r2 of the characteristic equation, what is the general solution form?	a_n = alpha1 * r1^n + alpha2 * r2^n
+Given a REPEATED root r0 (degree 2), what is the general solution form, and why is it different?	a_n = alpha1 * r0^n + alpha2 * n * r0^n; the extra factor of n is needed because a repeated root requires a second, linearly independent solution
+How do you solve for the constants (alpha1, alpha2) in the general solution?	Use the given initial conditions (e.g. a0, a1) to set up and solve a system of equations
+Set up the recurrence relation for the Towers of Hanoi problem (n disks), with its initial condition.	a_n = 2*a_(n-1) + 1, with a_1 = 1
+Why is the '2xn board tiled with 1x2 dominoes' recurrence the same as Fibonacci's?	The last tile placed is either vertical (reducing to the n-1 case) or two tiles horizontal (reducing to the n-2 case), giving a_n = a_(n-1) + a_(n-2), same recursive structure as Fibonacci
+Write the general divide-and-conquer runtime recurrence form, and give merge sort's specific recurrence.	T(n) = a*T(n/b) + f(n); merge sort: T(n) = 2*T(n/2) + O(n)
+What does solving merge sort's recurrence tell you, connecting to Big-O?	It solves to T(n) = O(n log n), which is exactly where merge sort's O(n log n) complexity class comes from mathematically

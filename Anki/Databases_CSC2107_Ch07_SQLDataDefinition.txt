@@ -1,0 +1,12 @@
+#separator:tab
+#html:true
+#deck:Databases::CSC2107::Ch07 SQL Data Definition
+What does declaring a column PRIMARY KEY automatically enforce?	NOT NULL and uniqueness (entity integrity), automatically, without needing separate constraints
+List the four referential actions available for ON DELETE / ON UPDATE.	CASCADE (propagate the delete/update to referencing rows), SET NULL (set foreign key to null), SET DEFAULT (set foreign key to its default value), NO ACTION/RESTRICT (reject the operation if referencing rows exist)
+Why might ON DELETE CASCADE be inappropriate for a Branch-to-Staff foreign key?	It would automatically delete all Staff rows when a Branch is deleted, which is often not the intended business rule — RESTRICT is usually safer, forcing staff to be reassigned or removed first
+Distinguish CHAR(n) from VARCHAR(n).	CHAR(n) always pads with trailing spaces to exactly n characters; VARCHAR(n) stores only the actual characters used, up to a maximum of n
+Why does DROP TABLE sometimes fail?	If other tables have foreign keys referencing it, the DBMS enforces referential integrity and blocks the drop unless those references are removed/altered first
+What is the tradeoff of creating an index on a column?	Faster retrieval and sorting on that column, at the cost of extra storage and slightly slower INSERT/UPDATE/DELETE (since the index must also be updated)
+What does WITH CHECK OPTION do when defined on a view?	Ensures that updates made through the view can't produce a row that would fall outside the view's own WHERE condition
+What does WITH GRANT OPTION allow a user to do?	Pass the granted privileges on to OTHER users, not just use the privilege themselves
+What does a CHECK constraint enforce, in relational model terms?	A general constraint — a business rule specific to the application, beyond the basic entity/referential integrity rules

@@ -1,0 +1,20 @@
+#separator:tab
+#html:true
+#deck:DiscreteMath::CSC2105::Ch01 Logic and Proofs
+Define a proposition.	A declarative sentence that is either true or false, but not both
+When is the conditional p->q false, and when is it true?	It is false ONLY when p is true and q is false; it is true in every other case, including vacuously true whenever p is false
+State the truth condition for exclusive or (p xor q).	True when exactly one of p, q is true (false if both true or both false)
+Which of the converse, inverse, and contrapositive of p->q is logically equivalent to it?	Only the contrapositive (not-q -> not-p); the converse (q->p) and inverse (not-p -> not-q) are NOT equivalent to the original, though they are equivalent to each other
+State De Morgan's laws for propositions.	not(p AND q) = (not p) OR (not q); not(p OR q) = (not p) AND (not q)
+State De Morgan's laws for quantifiers.	not(for all x, P(x)) = there exists x such that not P(x); not(there exists x, P(x)) = for all x, not P(x)
+Why does the order of nested quantifiers matter? Give the classic example.	For all x there exists y P(x,y) is generally NOT equivalent to there exists y for all x P(x,y); example: with P(x,y) = 'x+y=0' over integers, the first is true (pick y=-x each time) but the second is false (no single y works for every x)
+State Modus Ponens.	From p and p->q, conclude q
+State Modus Tollens.	From not-q and p->q, conclude not-p
+Is 'from q and p->q, conclude p' a valid rule of inference?	No — this is the fallacy of Affirming the Consequent, not a valid rule; it looks like Modus Ponens but runs backwards
+Is 'from not-p and p->q, conclude not-q' a valid rule of inference?	No — this is the fallacy of Denying the Antecedent, not a valid rule
+State Disjunctive Syllogism.	From p OR q and not-p, conclude q
+Describe proof by contradiction.	Assume the statement (or its conclusion) is false, alongside the hypothesis, then derive a logical contradiction (something of the form r AND not-r); since a contradiction can never be true, the assumption must be false, proving the original statement true
+What's needed to disprove a universally quantified statement (for all x, P(x))?	Just ONE counterexample — a single x where P(x) fails
+What's needed to disprove an existentially quantified statement (there exists x, P(x))?	You must show P(x) fails for EVERY x — i.e. prove for all x, not P(x) — much harder than disproving a universal claim
+Why is 'proof by example' invalid for establishing a for-all (universally quantified) statement?	Showing a statement holds for one or a few specific cases does not prove it holds for every case in the domain; universal claims require a general argument covering all cases, not selected examples
+Distinguish a constructive from a non-constructive existence proof.	Constructive: exhibit a specific object that satisfies the property. Non-constructive: prove such an object must exist without actually producing/identifying it (e.g. via contradiction)

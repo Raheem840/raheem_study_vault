@@ -1,0 +1,18 @@
+#separator:tab
+#html:true
+#deck:DiscreteMath::CSC2105::Ch02 Sets and Functions
+Define A union B.	Elements that are in A OR B (or both)
+Define A intersection B.	Elements that are in BOTH A and B
+Define A minus B (set difference).	Elements that are in A but NOT in B
+Define A symmetric difference B, and how does it differ from A union B?	Elements in exactly one of A, B (not both); unlike union, it explicitly excludes the overlap (A intersection B)
+What is the Cartesian product A x B, and what is its cardinality formula?	The set of all ordered pairs (a,b) with a in A, b in B; |A x B| = |A| * |B|
+What is the power set P(A), and what is the formula for |P(A)| given |A|=n?	The set of ALL subsets of A (including empty set and A itself); |P(A)| = 2^n
+State De Morgan's Law for sets (complement of a union).	(A union B) complement = (A complement) intersect (B complement)
+Define an injective (one-to-one) function.	f(a1) = f(a2) implies a1 = a2 — different inputs always give different outputs
+Define a surjective (onto) function.	For every b in the codomain B, there exists some a in the domain A such that f(a) = b — every codomain element is hit
+Define a bijective function.	A function that is both injective and surjective; has a well-defined inverse function
+Why does f^-1 only exist as a true function when f is bijective?	Injectivity ensures each output maps back to a unique single input (well-defined inverse); surjectivity ensures every element of the codomain has a preimage to map back to, covering the whole codomain
+Why can the same formula (e.g. f(x) = x^2) be injective on one domain but not another?	Injective/surjective/bijective properties depend on the STATED domain and codomain, not just the formula; restricting the domain (e.g. to x >= 0) can make a non-injective function injective
+What does function composition (f∘g)(x) mean?	Apply g first, then f: (f∘g)(x) = f(g(x))
+State the closed-form formula for the sum of 1 to n (sum_{i=1}^{n} i).	n(n+1)/2
+State the formula for the geometric series sum_{i=0}^{n} r^i, for r not equal to 1.	(r^(n+1) - 1) / (r - 1)

@@ -1,0 +1,12 @@
+#separator:tab
+#html:true
+#deck:Databases::CSC2107::Ch10 Design Lifecycle
+List the stages of the database system development lifecycle in order.	Database planning, system definition, requirements collection and analysis, database design, DBMS selection (optional), application design, prototyping (optional), implementation, data conversion and loading, testing, operational maintenance
+Distinguish a mission statement from mission objectives in database planning.	The mission statement defines the overall purpose of the database system; mission objectives are the specific tasks the database must support
+What is a 'user view' in the context of system definition?	The requirements of a particular job role or application area, defining part of the system's scope
+Name the three sub-phases of database design and what each produces.	Conceptual design (a conceptual data model — entities, relationships, attributes), logical design (a logical data model mapped to a specific data model type, e.g. relational, including normalization), physical design (implementation details for a specific target DBMS)
+Which sub-phase of database design is fully independent of any DBMS, even the underlying data model type?	Conceptual design
+List the 5 fact-finding techniques.	Examining documentation, interviewing, observing the enterprise in operation, research, questionnaires
+Why is combining several fact-finding techniques generally better than relying on just one?	Different techniques have different strengths (e.g. interviews give depth, questionnaires give breadth efficiently across many people) and compensate for each other's weaknesses
+What does transaction design determine, and why does it happen before physical design is finalized?	It identifies the retrieval/update transactions the application will need to run; this influences physical design decisions like which columns to index
+What is the purpose of CASE tools in the database design process?	Software tools (diagramming, data dictionaries, prototyping/code generation) that support and improve consistency across the design process, reducing manual errors

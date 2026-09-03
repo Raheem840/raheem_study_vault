@@ -1,0 +1,13 @@
+#separator:tab
+#html:true
+#deck:Databases::CSC2107::Ch02-03 Environment and Architectures
+Name the three ANSI-SPARC architecture levels and what each describes.	External level (each user's own view), Conceptual level (the whole database structure, DBA/designer view), Internal level (how data is physically stored on disk)
+Define logical data independence.	The ability to change the conceptual schema without affecting external schemas or application programs
+Define physical data independence.	The ability to change the internal (storage) schema without affecting the conceptual schema or external schemas
+Which is generally harder to achieve, logical or physical data independence, and why?	Logical data independence is harder, because application programs are more tightly tied to the logical structure of the data they process than to how it's physically stored
+Distinguish procedural DML from non-procedural (declarative) DML, and state which category SQL belongs to.	Procedural DML requires specifying WHAT data is needed AND HOW to get it step by step; non-procedural DML only specifies WHAT is needed, letting the DBMS determine HOW. SQL is non-procedural (declarative)
+Name the three categories of data models.	Object-based (high-level/conceptual, e.g. ER model), record-based (logical, e.g. relational model), physical (low-level storage models)
+Is the relational model in the same category as the ER model?	No — the relational model is a record-based (logical) model, while the ER model is an object-based (conceptual) model; they serve different design phases even though ER diagrams are typically translated into relational schemas
+List the four multi-user DBMS architectures in historical order.	Teleprocessing, file-server architecture, two-tier client-server, three-tier client-server (n-tier further splits the middle tier)
+Give three reasons three-tier client-server is generally preferred over two-tier.	Thinner clients (business logic centralized in the middle tier), easier maintenance (update business rules once, not per client), better scalability (middle tier scaled independently), improved security (clients never talk to the database directly)
+Name four functions a DBMS must provide beyond storing and retrieving data.	Transaction support, concurrency control, recovery services, authorization services, integrity services, a catalog/metadata, support for data independence, utility services (any four)

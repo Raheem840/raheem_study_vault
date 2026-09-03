@@ -1,0 +1,14 @@
+#separator:tab
+#html:true
+#deck:DiscreteMath::CSC2105::Ch04 Number Theory
+State the Fundamental Theorem of Arithmetic.	Every integer greater than 1 can be written as a product of primes in exactly one way, up to ordering
+Describe the Euclidean Algorithm for computing gcd(a,b).	Repeatedly replace the larger number with the remainder of dividing it by the smaller, until the remainder is 0; the last nonzero remainder is the gcd
+State the identity relating gcd and lcm.	gcd(a,b) * lcm(a,b) = a * b
+What does the Extended Euclidean Algorithm find, beyond the gcd?	Integers x, y such that ax + by = gcd(a,b) (Bezout's identity), used for computing modular inverses
+Define a ≡ b (mod m).	m divides (a - b); a and b leave the same remainder when divided by m
+Under what condition does ax ≡ b (mod m) have a solution?	If and only if gcd(a,m) divides b
+When does a have a modular inverse mod m, and how is it found?	When gcd(a,m) = 1 (a and m are coprime); found via the Extended Euclidean Algorithm
+In RSA, what are the public key components and what is the encryption formula?	Public key is (n, e); encryption is C = M^e mod n
+In RSA, what is the private key and the decryption formula?	Private key is d (where d = e^-1 mod phi(n)); decryption is M = C^d mod n
+Why is RSA considered secure?	Computing the private key d from the public key alone requires factoring n back into its prime factors p and q, which is believed computationally infeasible for sufficiently large primes, even though multiplying p*q is easy
+What is Euler's totient phi(n) for n = p*q where p, q are distinct primes?	phi(n) = (p-1)(q-1)

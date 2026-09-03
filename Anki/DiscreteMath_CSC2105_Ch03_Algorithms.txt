@@ -1,0 +1,14 @@
+#separator:tab
+#html:true
+#deck:DiscreteMath::CSC2105::Ch03 Algorithms
+List the 5 defining properties of an algorithm.	Input, output, definiteness, correctness, finiteness
+What precondition does binary search require that linear search does not?	The list must already be sorted
+What does it mean for f(x) to be O(g(x))?	There exist positive constants C and k such that |f(x)| <= C*|g(x)| for all x > k — f grows no faster than a constant multiple of g for large x (an upper bound on growth)
+What is the shortcut for finding the Big-O of a polynomial?	The Big-O is just the highest-degree term, with its coefficient dropped; e.g. 3x^3+5x^2+7 is O(x^3)
+Order these growth rates from slowest to fastest: O(n^2), O(log n), O(1), O(n log n), O(2^n), O(n), O(n!)	O(1) < O(log n) < O(n) < O(n log n) < O(n^2) < O(2^n) < O(n!)
+What Big-O does a single loop running n times with O(1) work per iteration produce?	O(n)
+What Big-O does a loop nested inside another loop, both running n times, produce?	O(n^2)
+What Big-O does a loop that halves the problem size each iteration (like binary search) produce?	O(log n)
+Define Big-Omega (lower bound).	f(x) is Omega(g(x)) if f grows at least as fast as g — a lower bound on growth rate
+Define Big-Theta.	f is Theta(g(x)) if f is both O(g(x)) and Omega(g(x)) — g is a tight bound in both directions
+Why is 'O(n^2)' a technically valid but poor answer for an algorithm that is actually O(n)?	Big-O gives an upper bound, so a looser bound like O(n^2) is technically true for an O(n) algorithm, but exam/practical answers should give the TIGHTEST valid bound

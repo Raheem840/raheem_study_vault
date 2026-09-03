@@ -1,0 +1,12 @@
+#separator:tab
+#html:true
+#deck:DiscreteMath::CSC2105::Ch05 Induction and Recursion
+State the 3-part structure of a proof by mathematical induction.	Base case (show P(n0) is true), inductive step (assume P(k) true, prove P(k+1) follows), conclusion (by induction, P(n) holds for all n >= n0)
+Why must the inductive step explicitly use the inductive hypothesis?	Because a valid inductive proof must show P(k+1) FOLLOWS FROM the assumption that P(k) is true; not using the assumption means you haven't actually proven the implication, just restated the claim
+What distinguishes strong induction from regular induction?	Strong induction assumes P(n0) through P(k) are ALL true (not just P(k)) before proving P(k+1); needed when P(k+1) depends on more than just the immediately preceding case
+Are strong induction and regular induction equally powerful?	Yes — they are logically equivalent in power; strong induction is just more convenient when the inductive step needs more than the immediate predecessor
+Give the recursive definition of the factorial function.	f(0) = 1 (base case); f(n) = n * f(n-1) for n >= 1 (recursive case)
+Give the recursive definition of the Fibonacci sequence, including base cases.	F(0) = 0, F(1) = 1 (base cases); F(n) = F(n-1) + F(n-2) for n >= 2 (recursive case)
+What is structural induction used for?	Proving properties of recursively defined structures (like recursively defined sets or trees); mirrors the recursive definition itself, proving the base case then that the property is preserved by the recursive construction rules
+Why must every recursive definition include a base case?	Without a base case that doesn't recurse further, the recursion never terminates (infinite recursion)
+What proof technique is typically used to prove a recursive algorithm is correct?	(Strong) induction on the size of the input

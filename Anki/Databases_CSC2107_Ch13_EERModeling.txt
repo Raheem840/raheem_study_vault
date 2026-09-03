@@ -1,0 +1,13 @@
+#separator:tab
+#html:true
+#deck:Databases::CSC2107::Ch13 EER Modeling
+Define superclass and subclass.	A superclass is an entity type including one or more distinct groupings (subclasses) of its occurrences; a subclass is a distinct grouping of superclass occurrences, which may have its own additional attributes/relationships
+What does attribute inheritance mean for a subclass?	A subclass inherits all attributes and relationships of its superclass, plus can define its own additional, specific ones
+Distinguish specialization from generalization as design processes.	Specialization is top-down: start with a superclass, identify distinguishing characteristics to split it into subclasses. Generalization is bottom-up: start with several entity types sharing common features, factor those out into a new superclass
+Why do specialization and generalization typically produce the same final diagram?	They are different design PROCESSES (top-down vs bottom-up) for arriving at the same structural result — a superclass with subclasses
+Name the two independent constraint axes for specialization/generalization.	Participation (mandatory/total vs optional/partial) and disjointness (disjoint vs overlapping)
+Define mandatory (total) vs optional (partial) participation in specialization.	Mandatory: every occurrence of the superclass must belong to at least one subclass. Optional: superclass occurrences may exist without belonging to any subclass
+Define disjoint vs overlapping specialization.	Disjoint: an occurrence can belong to at most one subclass (subclasses don't overlap). Overlapping: an occurrence can belong to more than one subclass simultaneously
+Why must you specify BOTH axes to fully describe a specialization?	The two axes (participation and disjointness) are independent properties; specifying only one gives an incomplete description
+What does aggregation model, and how does it differ from a plain binary relationship?	Aggregation models a relationship as if it were a higher-level entity, allowing further relationships to attach to that aggregate as a whole, rather than modeling a simple association between two entity types directly
+How does composition differ from aggregation?	Composition is a stronger form of aggregation where the part entity's existence is entirely dependent on the whole — if the whole is destroyed, so are its parts, paralleling the strong/weak entity distinction

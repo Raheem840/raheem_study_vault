@@ -1,0 +1,15 @@
+#separator:tab
+#html:true
+#deck:Databases::CSC2107::Ch14 Normalization
+Define an insertion anomaly, with an example pattern.	Being unable to add certain data without also having other, unrelated data available, e.g. can't record a new course exists until a student has enrolled in it
+Define a deletion anomaly, with an example pattern.	Deleting one fact accidentally destroys other, unrelated information, e.g. deleting the last enrolled student in a course accidentally deletes the record that the course exists
+Define a modification (update) anomaly, with an example pattern.	A fact stored redundantly in multiple rows must be updated consistently everywhere or the data becomes contradictory, e.g. a course title changed in some rows but not others
+Define a functional dependency A -> B.	For any two tuples that agree on their A value, they must also agree on their B value — A's value uniquely determines B's value
+Define a determinant.	The attribute(s) on the left side of a functional dependency
+Distinguish full, partial, and transitive functional dependency.	Full: B depends on the WHOLE composite key, removing any part breaks the dependency. Partial: B depends on only PART of a composite key. Transitive: A->B and B->C, so A->C indirectly through B, not directly
+State the definition of First Normal Form (1NF).	A relation in which the intersection of every row and column contains one, and only one, atomic value — no repeating groups or multi-valued attributes
+State the definition of Second Normal Form (2NF).	A relation in 1NF where every non-primary-key attribute is fully functionally dependent on the entire primary key (no partial dependencies)
+Why does a relation with a single-attribute (non-composite) primary key automatically satisfy 2NF?	There's no 'part' of a single-attribute key to partially depend on, so partial dependency (which requires a composite key) can't occur
+State the definition of Third Normal Form (3NF).	A relation in 1NF and 2NF where no non-primary-key attribute is transitively dependent on the primary key
+Given StaffBranch(staffNo, staffName, branchNo, branchAddress) with staffNo->branchNo and branchNo->branchAddress, identify the transitive dependency and the 3NF fix.	branchAddress depends on staffNo only through branchNo (transitively); fix: split into Staff(staffNo, staffName, branchNo) and Branch(branchNo, branchAddress), with branchNo as a foreign key
+Why are 2NF and 3NF cumulative rather than independent checks?	Both definitions explicitly build on the previous normal form ('in 1NF and...', 'in 1NF and 2NF and...') — a table can't be claimed 3NF without also satisfying 1NF and 2NF
